@@ -1,0 +1,22 @@
+{
+  "name": "saucedemo-qa-portfolio",
+  "version": "1.0.0",
+  "description": "Portfólio de QA com testes manuais e automatizados do SauceDemo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leesaeny/saucedemo-qa-portfolio.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/leesaeny/saucedemo-qa-portfolio/issues"
+  },
+  "homepage": "https://github.com/leesaeny/saucedemo-qa-portfolio#readme",
+  "devDependencies": {
+    "cypress": "^16.2.1"
+  }
+}

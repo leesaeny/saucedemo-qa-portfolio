@@ -147,3 +147,11 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Cypress - arquivos gerados durante os testes
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# macOS
+.DS_Store
