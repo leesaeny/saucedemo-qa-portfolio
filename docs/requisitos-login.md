@@ -50,7 +50,7 @@ As observações exploratórias não substituem a execução formal dos casos de
 - História relacionada: QASD-4.
 
 | Usuário | Senha | Resultado observado |
-|---|---|---|---|
+|---|---|---|
 | Vazio | Preenchida | `Username is required` |
 | Preenchido | Vazia | `Password is required` |
 | Vazio | Vazia | `Username is required` |
@@ -85,7 +85,7 @@ A observação não foi classificada como defeito confirmado nesta etapa.
 ## 5. Rastreabilidade
 
 | Requisito | História | Caso de teste | Situação |
-|---|---|---|
+|---|---|---|---|
 | LOGIN-RF-01 | QASD-4 | QASD-T1 | Caso aprovado |
 | LOGIN-RF-02 | QASD-4 | QASD-T2 | Caso aprovado |
 | LOGIN-RF-03 | QASD-4 | QASD-T3, QASD-T4, QASD-T5 | Casos aprovados |
