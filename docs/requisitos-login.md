@@ -50,7 +50,7 @@ As observações exploratórias não substituem a execução formal dos casos de
 - História relacionada: QASD-4.
 
 | Usuário | Senha | Resultado observado |
-|---|---|---|
+|---|---|---|---|
 | Vazio | Preenchida | `Username is required` |
 | Preenchido | Vazia | `Password is required` |
 | Vazio | Vazia | `Username is required` |
