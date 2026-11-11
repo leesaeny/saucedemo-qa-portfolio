@@ -84,14 +84,16 @@ A observação não foi classificada como defeito confirmado nesta etapa.
 
 ## 5. Rastreabilidade
 
-| Requisito | História | Situação |
+| Requisito | História | Caso de teste | Situação |
 |---|---|---|
-| LOGIN-RF-01 | QASD-4 | Comportamento observado |
-| LOGIN-RF-02 | QASD-4 | Comportamento observado |
-| LOGIN-RF-03 | QASD-4 | Comportamento observado |
-| LOGIN-RF-04 | QASD-4 | Comportamento observado |
+| LOGIN-RF-01 | QASD-4 | QASD-T1 | Caso aprovado |
+| LOGIN-RF-02 | QASD-4 | QASD-T2 | Caso aprovado |
+| LOGIN-RF-03 | QASD-4 | QASD-T3, QASD-T4, QASD-T5 | Casos aprovados |
+| LOGIN-RF-04 | QASD-4 | QASD-T6 | Caso aprovado |
 
-Os vínculos com os casos de teste serão adicionados após a elaboração e o cadastro no Zephyr.
+Os seis casos de teste foram cadastrados e revisados no Zephyr Scale, com status Approved e rastreabilidade estabelecida com a história QASD-4.
+
+A aprovação dos casos indica que os procedimentos estão prontos para execução, não que os testes tenham sido executados com sucesso. Os resultados serão registrados posteriormente, durante o ciclo de execução.
 
 ## 6. Limitações
 
