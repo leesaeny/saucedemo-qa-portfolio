@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "Portfólio de QA com testes manuais e automatizados do SauceDemo",
   "main": "index.js",
+
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "test:e2e": "cypress run --browser chrome",
+    "test:e2e:open": "cypress open"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leesaeny/saucedemo-qa-portfolio.git"
