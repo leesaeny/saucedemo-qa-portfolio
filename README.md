@@ -160,3 +160,28 @@ A validação formal da execução headless está prevista na etapa atual de des
 **Projeto no Jira:** [QASD | Portfolio QA - SauceDemo](https://leesaeny.atlassian.net/browse/QASD-1).
 
 O Jira e o Zephyr Scale são utilizados para o gerenciamento das atividades, dos casos e das execuções. Os principais entregáveis estão disponíveis neste repositório para consulta pública.
+
+## 6. Evidências de gerenciamento e execução
+
+Registros obtidos diretamente do Jira e do Zephyr Scale durante o desenvolvimento do projeto.
+
+### Jira
+
+| Evidência | Conteúdo |
+|---|---|
+| [Board do projeto](evidence/jira/01-board-qasd.png) | Organização e acompanhamento das atividades de QA |
+| [História QASD-4](evidence/jira/02-historia-login.png) | História de usuário, critérios de aceitação e resultado da validação |
+
+### Zephyr Scale
+
+| Evidência | Conteúdo |
+|---|---|
+| [Casos de teste](evidence/zephyr/01-casos-de-teste-login.png) | Biblioteca de casos, prioridades, versões e status |
+| [Detalhamento do QASD-T2](evidence/zephyr/02-qasd-t2-details.png) | Objetivo, pré-condições e prioridade |
+| [Passos do QASD-T2](evidence/zephyr/03-qasd-t2-script.png) | Procedimentos, dados de teste e resultados esperados |
+| [Rastreabilidade do QASD-T2](evidence/zephyr/04-qasd-t2-traceability.png) | Vínculos entre história, defeito e automação |
+| [Ciclo QASD-R1](evidence/zephyr/05-ciclo-qasd-r1-details.png) | Planejamento, ambiente e encerramento do ciclo |
+| [Relatório de execução](evidence/zephyr/06-ciclo-qasd-r1-resultados.xlsx) | Relatório original exportado do Zephyr Scale |
+
+As evidências representam o estado do projeto em 12/11/2026 e complementam os documentos técnicos disponíveis no repositório.
+
