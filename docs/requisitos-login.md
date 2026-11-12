@@ -80,9 +80,7 @@ Durante a exploração com senha incorreta, foi observada uma mensagem de erro p
 - Impacto potencial: prejuízo à legibilidade da mensagem.
 - Situação atual: ocorrência reproduzida durante a execução do QASD-T2 e confirmada por investigação técnica.
 
-Defeito relacionado: QASD-8 — Mensagem de erro parcialmente cortada.
-
-## 5. Rastreabilidade
+**Defeito relacionado:** [QASD-8 | Mensagem de erro parcialmente cortada](defects/QASD-8.md).
 
 ## 5. Rastreabilidade
 
@@ -106,6 +104,7 @@ A cobertura dos requisitos deste ciclo foi de 100%, com aprovação dos seis cas
 ## 6. Limitações
 
 - Não houve validação formal dos requisitos pelo responsável pelo produto.
-- As verificações foram realizadas como análise exploratória.
+- Os requisitos foram identificados inicialmente por meio de análise exploratória e posteriormente avaliados em execuções formais.
 - Os resultados não representam cobertura completa da funcionalidade.
-- As recomendações de qualidade serão avaliadas separadamente dos comportamentos funcionais identificados.
+- A validação formal foi realizada em um único ambiente desktop.
+- O defeito visual QASD-8 permanece aberto.

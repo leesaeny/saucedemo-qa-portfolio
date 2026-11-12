@@ -38,8 +38,6 @@ Os critérios de validação são fundamentados em comportamentos observáveis e
 
 ## 3. Cobertura e resultados
 
-## 3. Cobertura e resultados
-
 **Situação atual: fluxo de login validado manualmente.**
 
 | Funcionalidade | Testes executados | Aprovação funcional | Defeitos | Situação |
@@ -120,7 +118,3 @@ Selecione **E2E Testing** e o navegador desejado.
 **Projeto no Jira:** [QASD | SauceDemo QA Portfolio](https://leesaeny.atlassian.net/browse/QASD-1).
 
 O Jira e o Zephyr Scale são utilizados para o gerenciamento das atividades, dos casos e das execuções. Os principais entregáveis estão disponíveis neste repositório para consulta pública.
-
-**Projeto no Jira:** [QASD | SauceDemo QA Portfolio](https://leesaeny.atlassian.net/browse/QASD-1)
-
-Os documentos publicados neste repositório serão vinculados aos respectivos registros do Jira, permitindo acompanhar o planejamento, a execução e os resultados do trabalho.
