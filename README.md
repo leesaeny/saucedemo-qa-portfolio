@@ -38,21 +38,36 @@ Os critérios de validação são fundamentados em comportamentos observáveis e
 
 ## 3. Cobertura e resultados
 
-**Situação atual: projeto em desenvolvimento.**
+## 3. Cobertura e resultados
 
-| Atividade | Situação |
-|---|---|
-| Reconhecimento dos quatro fluxos | Concluído |
-| Planejamento e estratégia de testes | Documentados no Jira |
-| Configuração inicial do Cypress | Concluída |
-| Casos formais no Zephyr | Pendente |
-| Execuções formais | Pendente |
-| Testes automatizados | Pendente |
-| Relatório final de testes | Pendente |
+**Situação atual: fluxo de login validado manualmente.**
 
-Durante o reconhecimento funcional, foi observado um redirecionamento inesperado para a tela de login em diferentes etapas da navegação. A ocorrência foi registrada com evidências e permanece pendente de investigação formal.
+| Funcionalidade | Testes executados | Aprovação funcional | Defeitos | Situação |
+|---|---:|---:|---:|---|
+| Login | 6 | 100% | 1 | Ciclo concluído |
+| Catálogo | — | — | — | Planejado |
+| Carrinho | — | — | — | Planejado |
+| Checkout | — | — | — | Planejado |
 
-Os indicadores de cobertura, aprovação e defeitos serão publicados conforme houver execuções verificáveis.
+### Resultados do ciclo de login
+
+- 6 casos de teste elaborados e executados.
+- 4 requisitos funcionais avaliados.
+- 100% de cobertura dos requisitos identificados.
+- 100% de aprovação nos critérios funcionais avaliados.
+- 1 defeito visual reproduzido e investigado tecnicamente.
+
+### Destaque: investigação de defeito
+
+Durante a validação da autenticação com senha incorreta, foi identificado um problema de legibilidade na mensagem de erro.
+
+A investigação com Chrome DevTools identificou uma limitação de altura no componente CSS. Uma possível solução foi avaliada experimentalmente em três cenários, sem modificar o código-fonte da aplicação.
+
+[Consultar investigação técnica e evidências do QASD-8](docs/defects/QASD-8.md).
+
+[Consultar relatório de encerramento do ciclo de login](docs/relatorio-ciclo-login.md).
+
+A aprovação funcional não representa ausência de defeitos. Os resultados estão limitados ao escopo e às condições de execução documentadas.
 
 ## 4. Como executar
 
@@ -94,14 +109,17 @@ Selecione **E2E Testing** e o navegador desejado.
 
 ## 5. Documentação e rastreabilidade
 
-A documentação técnica será disponibilizada progressivamente, incluindo:
+| Documento | Conteúdo |
+|---|---|
+| [Análise funcional](docs/analise-funcional.md) | Reconhecimento dos principais fluxos da aplicação |
+| [Plano de testes](docs/plano-de-testes.md) | Estratégia, escopo, riscos e prioridades |
+| [Requisitos de login](docs/requisitos-login.md) | Requisitos, critérios de aceitação e matriz de rastreabilidade |
+| [Relatório do ciclo de login](docs/relatorio-ciclo-login.md) | Resultados, cobertura, métricas e limitações |
+| [QASD-8](docs/defects/QASD-8.md) | Relatório de defeito, investigação técnica e evidências |
 
-- Análise de requisitos e critérios de aceitação.
-- Plano e estratégia de testes.
-- Casos de teste e cobertura.
-- Registros de execução e evidências.
-- Investigações e relatórios de defeitos.
-- Relatório final do ciclo.
+**Projeto no Jira:** [QASD | SauceDemo QA Portfolio](https://leesaeny.atlassian.net/browse/QASD-1).
+
+O Jira e o Zephyr Scale são utilizados para o gerenciamento das atividades, dos casos e das execuções. Os principais entregáveis estão disponíveis neste repositório para consulta pública.
 
 **Projeto no Jira:** [QASD | SauceDemo QA Portfolio](https://leesaeny.atlassian.net/browse/QASD-1)
 

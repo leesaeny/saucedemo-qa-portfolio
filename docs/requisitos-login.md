@@ -78,27 +78,34 @@ Durante a exploração com senha incorreta, foi observada uma mensagem de erro p
 - Classificação: observação exploratória.
 - Evidência: [Mensagem de erro com senha incorreta](../evidence/login/login-invalid-password.png).
 - Impacto potencial: prejuízo à legibilidade da mensagem.
-- Próxima ação: investigar a reprodutibilidade e o impacto durante a execução formal dos testes.
+- Situação atual: ocorrência reproduzida durante a execução do QASD-T2 e confirmada por investigação técnica.
 
-A observação não foi classificada como defeito confirmado nesta etapa.
+Defeito relacionado: QASD-8 — Mensagem de erro parcialmente cortada.
 
 ## 5. Rastreabilidade
 
-| Requisito | História | Caso de teste | Situação |
-|---|---|---|---|
-| LOGIN-RF-01 | QASD-4 | QASD-T1 | Caso aprovado |
-| LOGIN-RF-02 | QASD-4 | QASD-T2 | Caso aprovado |
-| LOGIN-RF-03 | QASD-4 | QASD-T3, QASD-T4, QASD-T5 | Casos aprovados |
-| LOGIN-RF-04 | QASD-4 | QASD-T6 | Caso aprovado |
+## 5. Rastreabilidade
 
-Os seis casos de teste foram cadastrados e revisados no Zephyr Scale, com status Approved e rastreabilidade estabelecida com a história QASD-4.
+| Requisito | História | Caso de teste | Ciclo | Resultado | Defeito |
+|---|---|---|---|---|---|
+| LOGIN-RF-01 | QASD-4 | QASD-T1 | QASD-R1 | Pass | — |
+| LOGIN-RF-02 | QASD-4 | QASD-T2 | QASD-R1 | Pass* | [QASD-8](defects/QASD-8.md) |
+| LOGIN-RF-03 | QASD-4 | QASD-T3 | QASD-R1 | Pass | — |
+| LOGIN-RF-03 | QASD-4 | QASD-T4 | QASD-R1 | Pass | — |
+| LOGIN-RF-03 | QASD-4 | QASD-T5 | QASD-R1 | Pass | — |
+| LOGIN-RF-04 | QASD-4 | QASD-T6 | QASD-R1 | Pass | — |
 
-A aprovação dos casos indica que os procedimentos estão prontos para execução, não que os testes tenham sido executados com sucesso. Os resultados serão registrados posteriormente, durante o ciclo de execução.
+\* Requisito funcional atendido, com defeito visual identificado na apresentação da mensagem de erro.
+
+Os seis casos de teste foram elaborados, revisados e executados no Zephyr Scale, contemplando os quatro requisitos funcionais identificados.
+
+A cobertura dos requisitos deste ciclo foi de 100%, com aprovação dos seis casos nos critérios funcionais avaliados.
+
+**Referência:** [Relatório de encerramento do ciclo de login](relatorio-ciclo-login.md).
 
 ## 6. Limitações
 
 - Não houve validação formal dos requisitos pelo responsável pelo produto.
 - As verificações foram realizadas como análise exploratória.
-- Não foram executados casos de teste formais nesta etapa.
 - Os resultados não representam cobertura completa da funcionalidade.
 - As recomendações de qualidade serão avaliadas separadamente dos comportamentos funcionais identificados.
