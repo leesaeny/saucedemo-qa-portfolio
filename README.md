@@ -183,5 +183,11 @@ Registros obtidos diretamente do Jira e do Zephyr Scale durante o desenvolviment
 | [Ciclo QASD-R1](evidence/zephyr/05-ciclo-qasd-r1-details.png) | Planejamento, ambiente e encerramento do ciclo |
 | [Relatório de execução](evidence/zephyr/06-ciclo-qasd-r1-resultados.xlsx) | Relatório original exportado do Zephyr Scale |
 
+### Cypress
+
+| Evidência | Conteúdo |
+|---|---|
+| [Execução automatizada de login](evidence/cypress/01-login-execucao-interativa.png) | Execução interativa dos seis testes E2E no Google Chrome, com 100% de aprovação funcional |
+
 As evidências representam o estado do projeto em 12/11/2026 e complementam os documentos técnicos disponíveis no repositório.
 
