@@ -84,22 +84,38 @@ Durante a exploração com senha incorreta, foi observada uma mensagem de erro p
 
 ## 5. Rastreabilidade
 
-| Requisito | História | Caso de teste | Ciclo | Resultado | Defeito |
-|---|---|---|---|---|---|
-| LOGIN-RF-01 | QASD-4 | QASD-T1 | QASD-R1 | Pass | — |
-| LOGIN-RF-02 | QASD-4 | QASD-T2 | QASD-R1 | Pass* | [QASD-8](defects/QASD-8.md) |
-| LOGIN-RF-03 | QASD-4 | QASD-T3 | QASD-R1 | Pass | — |
-| LOGIN-RF-03 | QASD-4 | QASD-T4 | QASD-R1 | Pass | — |
-| LOGIN-RF-03 | QASD-4 | QASD-T5 | QASD-R1 | Pass | — |
-| LOGIN-RF-04 | QASD-4 | QASD-T6 | QASD-R1 | Pass | — |
+| Requisito | História | Caso de teste | Ciclo manual | Resultado manual | Teste automatizado | Resultado automatizado | Defeito |
+|---|---|---|---|---|---|---|---|
+| LOGIN-RF-01 | QASD-4 | QASD-T1 | QASD-R1 | Pass | QASD-T1 | Pass | — |
+| LOGIN-RF-02 | QASD-4 | QASD-T2 | QASD-R1 | Pass* | QASD-T2 | Pass* | [QASD-8](defects/QASD-8.md) |
+| LOGIN-RF-03 | QASD-4 | QASD-T3 | QASD-R1 | Pass | QASD-T3 | Pass | — |
+| LOGIN-RF-03 | QASD-4 | QASD-T4 | QASD-R1 | Pass | QASD-T4 | Pass | — |
+| LOGIN-RF-03 | QASD-4 | QASD-T5 | QASD-R1 | Pass | QASD-T5 | Pass | — |
+| LOGIN-RF-04 | QASD-4 | QASD-T6 | QASD-R1 | Pass | QASD-T6 | Pass | — |
 
-\* Requisito funcional atendido, com defeito visual identificado na apresentação da mensagem de erro.
+\* Critério funcional atendido. O defeito visual QASD-8 permanece aberto e não é validado pela automação funcional.
 
 Os seis casos de teste foram elaborados, revisados e executados no Zephyr Scale, contemplando os quatro requisitos funcionais identificados.
 
-A cobertura dos requisitos deste ciclo foi de 100%, com aprovação dos seis casos nos critérios funcionais avaliados.
+Os mesmos seis casos foram implementados em Cypress, preservando seus identificadores para garantir a rastreabilidade entre os testes manuais e automatizados.
 
-**Referência:** [Relatório de encerramento do ciclo de login](relatorio-ciclo-login.md).
+### Indicadores de cobertura
+
+| Indicador | Resultado |
+|---|---:|
+| Cobertura manual dos requisitos identificados | 4/4 (100%) |
+| Cobertura automatizada dos requisitos identificados | 4/4 (100%) |
+| Cobertura dos casos manuais pela automação | 6/6 (100%) |
+| Aprovação funcional manual | 6/6 (100%) |
+| Aprovação funcional automatizada | 6/6 (100%) |
+
+Os resultados automatizados correspondem à primeira execução local em modo interativo no Google Chrome.
+
+### Referências
+
+- [Relatório de encerramento do ciclo manual](relatorio-ciclo-login.md).
+- [Código dos testes automatizados](../cypress/e2e/login.cy.js).
+- [Tarefa de automação QASD-10](https://leesaeny.atlassian.net/browse/QASD-10).
 
 ## 6. Limitações
 
