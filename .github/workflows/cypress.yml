@@ -1,0 +1,40 @@
+name: Testes de login
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  login:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - name: Obter codigo do repositorio
+        uses: actions/checkout@v7
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      - name: Executar testes no Chrome
+        uses: cypress-io/github-action@v7
+        with:
+          browser: chrome
+        
+      - name: Guardar screenshots de falhas
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: login-failure-screenshots
+          path: cypress/screenshots
+          if-no-files-found: ignore
+          retention-days: 14
+              
