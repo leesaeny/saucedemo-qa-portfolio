@@ -144,7 +144,7 @@ npm run test:e2e
 
 O comando executa a suíte automatizada no Chrome sem utilizar a interface interativa do Cypress.
 
-A validação formal da execução headless está prevista na etapa atual de desenvolvimento.
+Execução headless validada no Chrome 157 com os seis testes aprovados. Os seis cenários também foram executados individualmente, todos com aprovação.
 
 ## 5. Documentação e rastreabilidade
 
@@ -189,6 +189,6 @@ Registros obtidos diretamente do Jira e do Zephyr Scale durante o desenvolviment
 | Evidência | Conteúdo |
 |---|---|
 | [Execução automatizada de login](evidence/cypress/01-login-execucao-interativa.png) | Execução interativa dos seis testes E2E no Google Chrome, com 100% de aprovação funcional |
+| [Execução headless de login](evidence/cypress/02-login-execucao-headless.png) | Suíte executada no Chrome 157 em modo headless, com seis testes aprovados e nenhuma falha |
 
-As evidências representam o estado do projeto em 12/11/2026 e complementam os documentos técnicos disponíveis no repositório.
-
+As evidências registram etapas do desenvolvimento em 12 e 13/11/2026 e complementam os documentos técnicos disponíveis no repositório.
