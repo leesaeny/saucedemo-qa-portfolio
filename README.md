@@ -44,7 +44,7 @@ Os critérios de validação são fundamentados em comportamentos observáveis e
 
 | Funcionalidade | Testes manuais | Testes automatizados | Defeitos | Situação |
 |---|---:|---:|---:|---|
-| Login | 6 | 6 | 1 | Automação em validação |
+| Login | 6 | 6 | 1 | Automação validada localmente |
 | Catálogo | — | — | — | Planejado |
 | Carrinho | — | — | — | Planejado |
 | Checkout | — | — | — | Planejado |
