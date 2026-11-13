@@ -181,7 +181,8 @@ Registros obtidos diretamente do Jira e do Zephyr Scale durante o desenvolviment
 | [Passos do QASD-T2](evidence/zephyr/03-qasd-t2-script.png) | Procedimentos, dados de teste e resultados esperados |
 | [Rastreabilidade do QASD-T2](evidence/zephyr/04-qasd-t2-traceability.png) | Vínculos entre história, defeito e automação |
 | [Ciclo QASD-R1](evidence/zephyr/05-ciclo-qasd-r1-details.png) | Planejamento, ambiente e encerramento do ciclo |
-| [Relatório de execução](evidence/zephyr/06-ciclo-qasd-r1-resultados.xlsx) | Relatório original exportado do Zephyr Scale |
+| [Resultados do ciclo QASD-R1](evidence/zephyr/06-ciclo-qasd-r1-resultados.md) | Resumo das seis execuções manuais para consulta no GitHub |
+| [Exportação original em Excel](evidence/zephyr/06-ciclo-qasd-r1-resultados.xlsx) | Relatório detalhado exportado do Zephyr Scale |
 
 ### Cypress
 
