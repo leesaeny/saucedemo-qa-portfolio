@@ -16,14 +16,27 @@ describe('Autenticação - Login', () => {
     invalidPassword: 'senha_incorreta_123',
   };
 
+  function login(username, password) {
+    cy.get(selectors.username).clear();
+    cy.get(selectors.password).clear();
+
+    if (username !== '') {
+      cy.get(selectors.username).type(username);
+    }
+
+    if (password !== '') {
+      cy.get(selectors.password).type(password);
+    }
+
+    cy.get(selectors.loginButton).click();
+  }
+
   beforeEach(() => {
     cy.visit('/');
   });
 
   it('QASD-T1 - Login com credenciais válidas', () => {
-    cy.get(selectors.username).type(testData.validUsername);
-    cy.get(selectors.password).type(testData.validPassword);
-    cy.get(selectors.loginButton).click();
+    login(testData.validUsername, testData.validPassword);
     cy.url().should('include', '/inventory.html');
     cy.get(selectors.title)
       .should('be.visible')
@@ -31,9 +44,7 @@ describe('Autenticação - Login', () => {
   });
 
   it('QASD-T2 - Login com senha incorreta', () => {
-    cy.get(selectors.username).type(testData.validUsername);
-    cy.get(selectors.password).type(testData.invalidPassword);
-    cy.get(selectors.loginButton).click();
+    login(testData.validUsername, testData.invalidPassword);
     cy.url().should('eq', 'https://www.saucedemo.com/');
     cy.get(selectors.error)
       .should('be.visible')
@@ -41,9 +52,7 @@ describe('Autenticação - Login', () => {
   });
 
   it('QASD-T3 - Login com username vazio', () => {
-    cy.get(selectors.username).clear();
-    cy.get(selectors.password).type(testData.validPassword);
-    cy.get(selectors.loginButton).click();
+    login('', testData.validPassword);
     cy.url().should('eq', 'https://www.saucedemo.com/');
     cy.get(selectors.error)
       .should('be.visible')
@@ -51,9 +60,7 @@ describe('Autenticação - Login', () => {
   });
 
   it('QASD-T4 - Login com password vazio', () => {
-    cy.get(selectors.username).type(testData.validUsername);
-    cy.get(selectors.password).clear();
-    cy.get(selectors.loginButton).click();
+    login(testData.validUsername, '');
     cy.url().should('eq', 'https://www.saucedemo.com/');
     cy.get(selectors.error)
       .should('be.visible')
@@ -61,9 +68,7 @@ describe('Autenticação - Login', () => {
   });
 
   it('QASD-T5 - Login com username e password vazios', () => {
-    cy.get(selectors.username).clear();
-    cy.get(selectors.password).clear();
-    cy.get(selectors.loginButton).click();
+    login('', '');
     cy.url().should('eq', 'https://www.saucedemo.com/');
     cy.get(selectors.error)
       .should('be.visible')
@@ -71,9 +76,7 @@ describe('Autenticação - Login', () => {
   });
 
   it('QASD-T6 - Login com username bloqueado', () => {
-    cy.get(selectors.username).type(testData.lockedUsername);
-    cy.get(selectors.password).type(testData.validPassword);
-    cy.get(selectors.loginButton).click();
+    login(testData.lockedUsername, testData.validPassword);
     cy.url().should('eq', 'https://www.saucedemo.com/');
     cy.get(selectors.error)
       .should('be.visible')
