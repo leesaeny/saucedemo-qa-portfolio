@@ -40,7 +40,7 @@ describe('Autenticação - Login', () => {
     cy.url().should('include', '/inventory.html');
     cy.get(selectors.title)
       .should('be.visible')
-      .and('have.text', 'Products');
+      .and('have.text', 'Products - falha controlada QASD-11');
   });
 
   it('QASD-T2 - Login com senha incorreta', () => {
