@@ -5,7 +5,7 @@
 **Jira:** [QASD-3](https://leesaeny.atlassian.net/browse/QASD-3)  
 **Aplicação:** https://www.saucedemo.com/  
 **Tipo:** Testes funcionais de aplicação web  
-**Situação:** Planejamento definido, execução formal pendente
+**Situação:** Primeiro ciclo de login concluído no escopo dos quatro requisitos e seis casos de teste definidos, com automação validada localmente e no GitHub Actions. Catálogo, carrinho e checkout aguardam seus respectivos ciclos.
 
 ## 1. Objetivo
 
@@ -35,7 +35,7 @@ O planejamento busca verificar os principais fluxos de uma jornada de compra e i
 5. Selecionar casos repetíveis, com resultados esperados claros e estado controlado, para automação com Cypress.
 6. Consolidar os resultados e as limitações do ciclo.
 
-A automação será realizada inicialmente em ambiente local. A integração com GitHub Actions está prevista para uma etapa posterior.
+Os seis casos funcionais do primeiro ciclo de login estão automatizados com Cypress e foram validados localmente e no GitHub Actions, em Linux com Chrome headless. Os gatilhos de push, pull request e acionamento manual foram validados. Esses resultados se limitam ao escopo e às condições avaliadas; o defeito visual QASD-8 permanece aberto. Novos cenários serão incorporados à automação após avaliação dos resultados manuais e de sua adequação à regressão.
 
 ## 4. Ambiente e dados
 
