@@ -195,5 +195,6 @@ Registros obtidos diretamente do Jira e do Zephyr Scale durante o desenvolviment
 | [Execução no GitHub Actions](evidence/cypress/03-login-github-actions-sucesso.png) | Push na main disparou a execução dos seis testes, todos aprovados |
 | [Falha controlada no CI](evidence/cypress/04-login-github-actions-falha-controlada.png) | Pull request disparou a execução com uma falha intencional e upload da screenshot como artefato |
 | [Aprovação após restauração](evidence/cypress/05-login-github-actions-pr-restaurado.png) | Após remover a alteração temporária, os seis testes passaram novamente no pull request |
+| [Execução manual no GitHub Actions](evidence/cypress/06-login-github-actions-manual.png) | Acionamento manual na main pelo evento workflow_dispatch, com seis testes aprovados e nenhuma falha |
 
 As evidências registram etapas do desenvolvimento em 12 e 13/11/2026 e complementam os documentos técnicos disponíveis no repositório.
