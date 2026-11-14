@@ -36,7 +36,7 @@ Os critérios de validação são fundamentados em comportamentos observáveis e
 | Git e GitHub | Controle de versão e documentação |
 | VS Code | Desenvolvimento e manutenção das automações |
 
-**GitHub Actions:** integração contínua prevista para uma etapa posterior.
+**GitHub Actions:** execução dos testes no Chrome headless em Linux, acionada por pushes na main, pull requests destinados à main ou acionamento manual.
 
 ## 3. Cobertura e resultados
 
@@ -44,7 +44,7 @@ Os critérios de validação são fundamentados em comportamentos observáveis e
 
 | Funcionalidade | Testes manuais | Testes automatizados | Defeitos | Situação |
 |---|---:|---:|---:|---|
-| Login | 6 | 6 | 1 | Automação validada localmente |
+| Login | 6 | 6 | 1 | Automação validada localmente e no CI |
 | Catálogo | — | — | — | Planejado |
 | Carrinho | — | — | — | Planejado |
 | Checkout | — | — | — | Planejado |
@@ -76,6 +76,8 @@ Tarefa: QASD-10.
 | Taxa de aprovação | 100% |
 
 A primeira execução automatizada foi realizada localmente no Google Chrome, em modo interativo.
+
+A suíte também foi validada no GitHub Actions, em Linux com Chrome headless, com seis testes aprovados. Uma falha intencional no QASD-T1 confirmou a sinalização de falha no workflow e o upload da screenshot. Após restaurar a verificação original, os seis testes passaram novamente. A validação da QASD-11 foi realizada no [PR #1](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/1), encerrado sem merge.
 
 A suíte contempla os seguintes cenários:
 
@@ -190,5 +192,8 @@ Registros obtidos diretamente do Jira e do Zephyr Scale durante o desenvolviment
 |---|---|
 | [Execução automatizada de login](evidence/cypress/01-login-execucao-interativa.png) | Execução interativa dos seis testes E2E no Google Chrome, com 100% de aprovação funcional |
 | [Execução headless de login](evidence/cypress/02-login-execucao-headless.png) | Suíte executada no Chrome 157 em modo headless, com seis testes aprovados e nenhuma falha |
+| [Execução no GitHub Actions](evidence/cypress/03-login-github-actions-sucesso.png) | Push na main disparou a execução dos seis testes, todos aprovados |
+| [Falha controlada no CI](evidence/cypress/04-login-github-actions-falha-controlada.png) | Pull request disparou a execução com uma falha intencional e upload da screenshot como artefato |
+| [Aprovação após restauração](evidence/cypress/05-login-github-actions-pr-restaurado.png) | Após remover a alteração temporária, os seis testes passaram novamente no pull request |
 
 As evidências registram etapas do desenvolvimento em 12 e 13/11/2026 e complementam os documentos técnicos disponíveis no repositório.
