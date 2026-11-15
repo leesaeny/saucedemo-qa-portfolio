@@ -66,3 +66,14 @@ A alteração da ordenação deve modificar apenas a posição dos produtos na l
 - A verificação de imagem carregada e visível não representa uma avaliação visual completa.
 - Nos produtos Sauce Labs Bolt T-Shirt e Test.allTheThings() T-Shirt (Red), ambos com preço de US$ 15,99, foi observada a ordem alfabética crescente nas duas sequências exploradas de ordenação por preço. Essa observação não estabelece uma regra de desempate.
 - Inclusão e remoção de itens no carrinho, página de detalhes do produto, outros perfis de usuário e compatibilidade com outros navegadores ficam fora deste ciclo.
+
+## 5. Rastreabilidade
+
+| Requisito | Casos de teste no Zephyr Scale | História |
+|---|---|---|
+| CAT-RF-01 | QASD-T7 | QASD-12 |
+| CAT-RF-02 | QASD-T8, QASD-T9 | QASD-12 |
+| CAT-RF-03 | QASD-T10, QASD-T11 | QASD-12 |
+| CAT-RF-04 | QASD-T8, QASD-T9, QASD-T10, QASD-T11 | QASD-12 |
+
+Elaboração dos casos acompanhada na tarefa QASD-13. Os vínculos indicam cobertura planejada e não representam aprovação dos requisitos.
