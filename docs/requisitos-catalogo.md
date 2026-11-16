@@ -80,6 +80,6 @@ A elaboração e a execução manual dos casos foram acompanhadas na tarefa QASD
 
 A automação é acompanhada na tarefa [QASD-14](https://leesaeny.atlassian.net/browse/QASD-14), com os testes identificados pelas mesmas chaves dos casos manuais no arquivo [catalogo.cy.js](../cypress/e2e/catalogo.cy.js).
 
-Os cinco testes do catálogo foram aprovados localmente no Chrome, em modo [interativo](../evidence/cypress/08-catalogo-execucao-interativa.png) e na [execução headless conjunta com os seis testes de login](../evidence/cypress/07-login-catalogo-execucao-headless.png), totalizando 11 testes aprovados. A validação no GitHub Actions está pendente.
+Os cinco testes do catálogo foram aprovados localmente no Chrome, em modo [interativo](../evidence/cypress/08-catalogo-execucao-interativa.png) e na [execução headless conjunta com os seis testes de login](../evidence/cypress/07-login-catalogo-execucao-headless.png), totalizando 11 testes aprovados. A execução conjunta também foi aprovada no GitHub Actions, em Linux com Chrome headless, com 11 testes aprovados e nenhuma falha no [PR #2](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/2). Consultar a [evidência da execução no CI](../evidence/cypress/09-login-catalogo-github-actions-sucesso.png).
 
 A matriz indica a cobertura dos requisitos pelos casos. Os resultados se aplicam aos critérios e ao ambiente das execuções registradas e não representam ausência de defeitos em todo o catálogo.

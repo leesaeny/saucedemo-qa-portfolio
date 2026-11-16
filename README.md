@@ -40,12 +40,12 @@ Os critérios de validação são fundamentados em comportamentos observáveis e
 
 ## 3. Cobertura e resultados
 
-**Portfólio em construção: primeiros ciclos manuais de login e catálogo concluídos. São 11 testes automatizados aprovados localmente. A automação de login também foi validada no GitHub Actions; a validação conjunta de login e catálogo no CI está pendente.**
+**Portfólio em construção: primeiros ciclos manuais de login e catálogo concluídos. São 11 testes automatizados aprovados localmente e no GitHub Actions.**
 
 | Funcionalidade | Testes manuais executados | Testes automatizados | Defeitos identificados | Situação |
 |---|---:|---:|---:|---|
 | Login | 6 | 6 | 1 | Ciclo manual concluído; automação validada localmente e no CI |
-| Catálogo | 5 | 5 | 0 | Ciclo manual concluído; automação validada localmente, com CI pendente |
+| Catálogo | 5 | 5 | 0 | Ciclo manual concluído; automação validada localmente e no CI |
 | Carrinho | — | — | — | Planejado |
 | Checkout | — | — | — | Planejado |
 
@@ -123,7 +123,7 @@ Os quatro testes de ordenação também verificam a opção selecionada e a pres
 | Catálogo em modo headless | 5 | 5 | 0 |
 | Login e catálogo em modo headless | 11 | 11 | 0 |
 
-As execuções locais foram realizadas em 16/11/2026, no macOS 15.8.3 com Chrome 157 e Cypress 16.2.1. A validação conjunta no GitHub Actions está pendente.
+As execuções locais foram realizadas em 16/11/2026, no macOS 15.8.3 com Chrome 157 e Cypress 16.2.1. A execução conjunta de login e catálogo também foi aprovada no GitHub Actions, em Linux com Chrome headless, com 11 testes aprovados e nenhuma falha no [PR #2](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/2).
 
 Cada teste do catálogo realiza login antes de iniciar suas verificações. A função `getProducts()` captura nome, descrição, preço e endereço da imagem para comparar as informações antes e depois da ordenação.
 
@@ -254,5 +254,6 @@ Registros obtidos diretamente do Jira e do Zephyr Scale durante o desenvolviment
 | [Execução manual no GitHub Actions](evidence/cypress/06-login-github-actions-manual.png) | Acionamento manual na main pelo evento workflow_dispatch, com seis testes aprovados e nenhuma falha |
 | [Execução headless de login e catálogo](evidence/cypress/07-login-catalogo-execucao-headless.png) | Execução conjunta no Chrome 157, com 11 testes aprovados e nenhuma falha |
 | [Execução interativa do catálogo](evidence/cypress/08-catalogo-execucao-interativa.png) | Cinco testes do catálogo aprovados no Google Chrome |
+| [Login e catálogo no GitHub Actions](evidence/cypress/09-login-catalogo-github-actions-sucesso.png) | Execução conjunta no PR #2, em Linux com Chrome headless, com 11 testes aprovados e nenhuma falha |
 
 As evidências registram etapas do desenvolvimento e da execução dos testes e complementam os documentos técnicos disponíveis no repositório.
