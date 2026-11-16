@@ -139,5 +139,65 @@ describe('Catálogo - Exibição e ordenação', () => {
     });
   });
 
+  it('QASD-T10 - Preço crescente e preservação das informações', () => {
+    cy.get(selectors.sort).select('hilo');
+    cy.get(selectors.sort).should('have.value', 'hilo');
+
+    getProducts().then((productsBefore) => {
+      cy.get(selectors.sort).select('lohi');
+      cy.get(selectors.sort).should('have.value', 'lohi');
+
+      cy.get(selectors.sort)
+        .find('option:selected')
+        .should('have.text', 'Price (low to high)');
+
+      getProducts().then((productsAfter) => {
+        const pricesAfter = productsAfter.map((product) =>
+          Number(product.price.replace('$', ''))
+        );
+
+        const expectedPrices = productsBefore
+          .map((product) => Number(product.price.replace('$', '')))
+          .sort((a, b) => a - b);
+
+        expect(pricesAfter, 'preços em ordem crescente')
+          .to.deep.equal(expectedPrices);
+
+        expect(productsAfter, 'produtos e informações preservados')
+          .to.have.deep.members(productsBefore);
+      });
+    });
+  });
+
+  it('QASD-T11 - Preço decrescente e preservação das informações', () => {
+    cy.get(selectors.sort).select('lohi');
+    cy.get(selectors.sort).should('have.value', 'lohi');
+
+    getProducts().then((productsBefore) => {
+      cy.get(selectors.sort).select('hilo');
+      cy.get(selectors.sort).should('have.value', 'hilo');
+
+      cy.get(selectors.sort)
+        .find('option:selected')
+        .should('have.text', 'Price (high to low)');
+
+      getProducts().then((productsAfter) => {
+        const pricesAfter = productsAfter.map((product) =>
+          Number(product.price.replace('$', ''))
+        );
+
+        const expectedPrices = productsBefore
+          .map((product) => Number(product.price.replace('$', '')))
+          .sort((a, b) => b - a);
+
+        expect(pricesAfter, 'preços em ordem decrescente')
+          .to.deep.equal(expectedPrices);
+
+        expect(productsAfter, 'produtos e informações preservados')
+          .to.have.deep.members(productsBefore);
+      });
+    });
+  });
+
 });
 
