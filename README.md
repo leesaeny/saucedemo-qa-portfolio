@@ -15,7 +15,7 @@ O projeto contempla quatro fluxos funcionais:
 | Funcionalidade | O que será avaliado |
 |---|---|
 | Login | Autenticação, validação de entradas e controle de acesso |
-| Catálogo | Exibição, seleção e consistência dos produtos |
+| Catálogo | Exibição, ordenação e preservação das informações dos produtos |
 | Carrinho | Inclusão, remoção, quantidade e integridade dos itens |
 | Checkout | Validação de dados, resumo financeiro e conclusão do pedido |
 
@@ -40,16 +40,18 @@ Os critérios de validação são fundamentados em comportamentos observáveis e
 
 ## 3. Cobertura e resultados
 
-**Situação atual: primeiro ciclo de testes manuais de login concluído e suíte automatizada implementada.**
+**Portfólio em construção: primeiros ciclos manuais de login e catálogo concluídos. Automação de login implementada e validada localmente e no CI.**
 
-| Funcionalidade | Testes manuais | Testes automatizados | Defeitos | Situação |
+| Funcionalidade | Testes manuais executados | Testes automatizados | Defeitos identificados | Situação |
 |---|---:|---:|---:|---|
-| Login | 6 | 6 | 1 | Automação validada localmente e no CI |
-| Catálogo | — | — | — | Planejado |
+| Login | 6 | 6 | 1 | Ciclo manual concluído e automação validada |
+| Catálogo | 5 | 0 | 0 | Ciclo manual de exibição e ordenação concluído |
 | Carrinho | — | — | — | Planejado |
 | Checkout | — | — | — | Planejado |
 
 ### Resultados dos testes manuais
+
+#### Login | QASD-R1
 
 Ciclo de execução: QASD-R1.
 
@@ -60,6 +62,16 @@ Ciclo de execução: QASD-R1.
 - 1 defeito visual reproduzido e investigado tecnicamente.
 
 [Consultar relatório de encerramento do ciclo de login](docs/relatorio-ciclo-login.md).
+
+#### Catálogo | QASD-R2
+
+- 5 casos de teste executados em 16/11/2026.
+- 4 requisitos propostos avaliados.
+- 5 casos aprovados, com taxa de aprovação de 100%.
+- Exibição das informações, quatro opções de ordenação e preservação dos dados verificadas nos seis produtos.
+- Nenhum defeito identificado nas verificações deste ciclo.
+
+[Consultar resultados do ciclo de catálogo](evidence/zephyr/catalogo/QASD-R2_resultados.md).
 
 ### Resultados dos testes automatizados
 
@@ -158,6 +170,7 @@ Execução headless validada no Chrome 157 com os seis testes aprovados. Os seis
 | [Relatório do ciclo de login](docs/relatorio-ciclo-login.md) | Resultados, cobertura, métricas e limitações |
 | [QASD-8](docs/defects/QASD-8.md) | Relatório de defeito, investigação técnica e evidências |
 | [Suíte automatizada de login](cypress/e2e/login.cy.js) | Implementação dos testes funcionais E2E |
+| [Requisitos de catálogo](docs/requisitos-catalogo.md) | Requisitos propostos, critérios de aceitação, limites e matriz de rastreabilidade |
 
 **Projeto no Jira:** [QASD | Portfolio QA - SauceDemo](https://leesaeny.atlassian.net/browse/QASD-1).
 
@@ -178,13 +191,16 @@ Registros obtidos diretamente do Jira e do Zephyr Scale durante o desenvolviment
 
 | Evidência | Conteúdo |
 |---|---|
-| [Casos de teste](evidence/zephyr/01-casos-de-teste-login.png) | Biblioteca de casos, prioridades, versões e status |
-| [Detalhamento do QASD-T2](evidence/zephyr/02-qasd-t2-details.png) | Objetivo, pré-condições e prioridade |
-| [Passos do QASD-T2](evidence/zephyr/03-qasd-t2-script.png) | Procedimentos, dados de teste e resultados esperados |
-| [Rastreabilidade do QASD-T2](evidence/zephyr/04-qasd-t2-traceability.png) | Vínculos entre história, defeito e automação |
-| [Ciclo QASD-R1](evidence/zephyr/05-ciclo-qasd-r1-details.png) | Planejamento, ambiente e encerramento do ciclo |
-| [Resultados do ciclo QASD-R1](evidence/zephyr/06-ciclo-qasd-r1-resultados.md) | Resumo das seis execuções manuais para consulta no GitHub |
-| [Exportação original em Excel](evidence/zephyr/06-ciclo-qasd-r1-resultados.xlsx) | Relatório detalhado exportado do Zephyr Scale |
+| [Casos de teste](evidence/zephyr/login/01-casos-de-teste-login.png) | Biblioteca de casos, prioridades, versões e status |
+| [Detalhamento do QASD-T2](evidence/zephyr/login/02-qasd-t2-details.png) | Objetivo, pré-condições e prioridade |
+| [Passos do QASD-T2](evidence/zephyr/login/03-qasd-t2-script.png) | Procedimentos, dados de teste e resultados esperados |
+| [Rastreabilidade do QASD-T2](evidence/zephyr/login/04-qasd-t2-traceability.png) | Vínculos entre história, defeito e automação |
+| [Ciclo QASD-R1](evidence/zephyr/login/05-ciclo-qasd-r1-details.png) | Planejamento, ambiente e encerramento do ciclo |
+| [Resultados do ciclo QASD-R1](evidence/zephyr/login/06-ciclo-qasd-r1-resultados.md) | Resumo das seis execuções manuais para consulta no GitHub |
+| [Exportação original em Excel](evidence/zephyr/login/06-ciclo-qasd-r1-resultados.xlsx) | Relatório detalhado exportado do Zephyr Scale |
+| [Resultados do ciclo QASD-R2](evidence/zephyr/catalogo/QASD-R2_resultados.md) | Resumo das cinco execuções manuais do catálogo |
+| [Execução do catálogo no Zephyr](evidence/zephyr/catalogo/QASD-R2_resultados-execucao.png) | Registro dos resultados dos cinco casos |
+| [Exportação original do catálogo em Excel](evidence/zephyr/catalogo/QASD-R2_resultados.xlsx) | Relatório detalhado exportado do Zephyr Scale |
 
 ### Cypress
 
@@ -197,4 +213,4 @@ Registros obtidos diretamente do Jira e do Zephyr Scale durante o desenvolviment
 | [Aprovação após restauração](evidence/cypress/05-login-github-actions-pr-restaurado.png) | Após remover a alteração temporária, os seis testes passaram novamente no pull request |
 | [Execução manual no GitHub Actions](evidence/cypress/06-login-github-actions-manual.png) | Acionamento manual na main pelo evento workflow_dispatch, com seis testes aprovados e nenhuma falha |
 
-As evidências registram etapas do desenvolvimento em 12 e 13/11/2026 e complementam os documentos técnicos disponíveis no repositório.
+As evidências registram etapas do desenvolvimento e da execução dos testes e complementam os documentos técnicos disponíveis no repositório.

@@ -5,7 +5,7 @@
 **Jira:** [QASD-3](https://leesaeny.atlassian.net/browse/QASD-3)  
 **Aplicação:** https://www.saucedemo.com/  
 **Tipo:** Testes funcionais de aplicação web  
-**Situação:** Primeiro ciclo de login concluído no escopo dos quatro requisitos e seis casos de teste definidos, com automação validada localmente e no GitHub Actions. Catálogo, carrinho e checkout aguardam seus respectivos ciclos.
+**Situação:** Primeiro ciclo de login concluído, com quatro requisitos e seis casos manuais, além de automação validada localmente e no GitHub Actions. Primeiro ciclo manual de catálogo concluído, com quatro requisitos propostos e cinco casos aprovados para exibição, ordenação e preservação das informações dos produtos. Carrinho e checkout aguardam seus respectivos ciclos.
 
 ## 1. Objetivo
 
@@ -36,6 +36,10 @@ O planejamento busca verificar os principais fluxos de uma jornada de compra e i
 6. Consolidar os resultados e as limitações do ciclo.
 
 Os seis casos funcionais do primeiro ciclo de login estão automatizados com Cypress e foram validados localmente e no GitHub Actions, em Linux com Chrome headless. Os gatilhos de push, pull request e acionamento manual foram validados. Esses resultados se limitam ao escopo e às condições avaliadas; o defeito visual QASD-8 permanece aberto. Novos cenários serão incorporados à automação após avaliação dos resultados manuais e de sua adequação à regressão.
+
+O ciclo manual de catálogo QASD-R2 foi executado em 16/11/2026, no macOS 15.8.3 com Google Chrome 157 e perfil standard_user. Os cinco casos QASD-T7 a QASD-T11 foram aprovados, sem identificação de defeitos nas verificações realizadas. A cobertura se limita à exibição e ordenação dos seis produtos e à preservação de suas informações, conforme os requisitos CAT-RF-01 a CAT-RF-04.
+
+[Consultar resultados do ciclo de catálogo](../evidence/zephyr/catalogo/QASD-R2_resultados.md).
 
 ## 4. Ambiente e dados
 
