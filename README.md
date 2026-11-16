@@ -226,6 +226,9 @@ Registros obtidos diretamente do Jira e do Zephyr Scale durante o desenvolviment
 |---|---|
 | [Board do projeto](evidence/jira/01-board-qasd.png) | Organização e acompanhamento das atividades de QA |
 | [História QASD-4](evidence/jira/02-historia-login.png) | História de usuário, critérios de aceitação e resultado da validação |
+| [Board após conclusão de login e catálogo](evidence/jira/03-board-login-catalogo-concluidos.png) | Tarefas concluídas, épico em andamento e defeito QASD-8 no Backlog |
+| [História QASD-12](evidence/jira/04-historia-catalogo.png) | História do catálogo, escopo, critérios de aceitação propostos e limitações |
+| [Conclusão da QASD-14](evidence/jira/05-automacao-catalogo-concluida.png) | Automação concluída, resultados locais e no CI e vínculo com o PR #2 |
 
 ### Zephyr Scale
 
