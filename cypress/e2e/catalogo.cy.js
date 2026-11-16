@@ -83,5 +83,61 @@ describe('Catálogo - Exibição e ordenação', () => {
         });
       });
   });
+
+  it('QASD-T8 - Nome crescente e preservação das informações', () => {
+    // Começa em Z a A para verificar uma mudança real de ordem.
+    cy.get(selectors.sort).select('za');
+
+    getProducts().then((productsBefore) => {
+      cy.get(selectors.sort).select('az');
+
+      cy.get(selectors.sort).should('have.value', 'az');
+
+      cy.get(selectors.sort)
+        .find('option:selected')
+        .should('have.text', 'Name (A to Z)');
+
+      getProducts().then((productsAfter) => {
+        const namesAfter = productsAfter.map((product) => product.name);
+        const expectedNames = productsBefore
+          .map((product) => product.name)
+          .sort((a, b) => a.localeCompare(b));
+
+        expect(namesAfter, 'nomes em ordem crescente')
+          .to.deep.equal(expectedNames);
+
+        expect(productsAfter, 'produtos e informações preservados')
+          .to.have.deep.members(productsBefore);
+      });
+    });
+  });
+
+  it('QASD-T9 - Nome decrescente e preservação das informações', () => {
+    cy.get(selectors.sort).select('az');
+    cy.get(selectors.sort).should('have.value', 'az');
+
+    getProducts().then((productsBefore) => {
+      cy.get(selectors.sort).select('za');
+      cy.get(selectors.sort).should('have.value', 'za');
+
+      cy.get(selectors.sort)
+        .find('option:selected')
+        .should('have.text', 'Name (Z to A)');
+
+      getProducts().then((productsAfter) => {
+        const namesAfter = productsAfter.map((product) => product.name);
+        const expectedNames = productsBefore
+          .map((product) => product.name)
+          .sort((a, b) => b.localeCompare(a));
+
+        expect(namesAfter, 'nomes em ordem decrescente')
+          .to.deep.equal(expectedNames);
+
+        expect(productsAfter, 'produtos e informações preservados')
+          .to.have.deep.members(productsBefore);
+      });
+    });
+  });
+
 });
 
