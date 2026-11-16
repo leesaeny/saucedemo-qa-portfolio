@@ -51,10 +51,15 @@ O Jira e o Zephyr Scale organizam as atividades, os casos e as execuções. Os d
 
 ### Resultados manuais
 
-| Funcionalidade | Ciclo | Data | Requisitos avaliados | Executados | Aprovados | Reprovados | Aprovação funcional |
-|---|---|---|---:|---:|---:|---:|---:|
-| Login | QASD-R1 | 12/11/2026 | 4 | 6 | 6 | 0 | 100% |
-| Catálogo | QASD-R2 | 16/11/2026 | 4 | 5 | 5 | 0 | 100% |
+| Indicador | Login | Catálogo |
+|---|---|---|
+| Ciclo | QASD-R1 | QASD-R2 |
+| Data da execução | 12/11/2026 | 16/11/2026 |
+| Requisitos avaliados | 4 | 4 |
+| Casos executados | 6 | 5 |
+| Aprovados | 6 | 5 |
+| Reprovados | 0 | 0 |
+| Aprovação funcional | 100% | 100% |
 
 A taxa de aprovação considera os casos executados em cada ciclo. No login, o resultado funcional aprovado não representa resolução do defeito visual QASD-8.
 
