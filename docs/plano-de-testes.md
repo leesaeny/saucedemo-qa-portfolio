@@ -5,7 +5,7 @@
 **Jira:** [QASD-3](https://leesaeny.atlassian.net/browse/QASD-3)  
 **Aplicação:** https://www.saucedemo.com/  
 **Tipo:** Testes funcionais de aplicação web  
-**Situação:** Primeiro ciclo de login concluído, com quatro requisitos e seis casos manuais, além de automação validada localmente e no GitHub Actions. Primeiro ciclo manual de catálogo concluído, com quatro requisitos propostos e cinco casos aprovados para exibição, ordenação e preservação das informações dos produtos. Carrinho e checkout aguardam seus respectivos ciclos.
+**Situação:** Primeiro ciclo de login concluído, com quatro requisitos e seis casos manuais, além de automação validada localmente e no GitHub Actions. Primeiro ciclo manual de catálogo concluído, com quatro requisitos propostos e cinco casos aprovados. Os cinco casos do catálogo estão automatizados e aprovados localmente no Chrome, em modo interativo e headless. A execução conjunta de login e catálogo totalizou 11 testes aprovados em modo headless local; a execução conjunta também foi aprovada no GitHub Actions, em Linux com Chrome headless, com 11 testes aprovados e nenhuma falha. Carrinho e checkout aguardam seus respectivos ciclos.
 
 ## 1. Objetivo
 
@@ -40,6 +40,14 @@ Os seis casos funcionais do primeiro ciclo de login estão automatizados com Cyp
 O ciclo manual de catálogo QASD-R2 foi executado em 16/11/2026, no macOS 15.8.3 com Google Chrome 157 e perfil standard_user. Os cinco casos QASD-T7 a QASD-T11 foram aprovados, sem identificação de defeitos nas verificações realizadas. A cobertura se limita à exibição e ordenação dos seis produtos e à preservação de suas informações, conforme os requisitos CAT-RF-01 a CAT-RF-04.
 
 [Consultar resultados do ciclo de catálogo](../evidence/zephyr/catalogo/QASD-R2_resultados.md).
+
+A automação do catálogo é acompanhada na tarefa [QASD-14](https://leesaeny.atlassian.net/browse/QASD-14). Os casos QASD-T7 a QASD-T11 foram selecionados por apresentarem verificações objetivas, repetíveis e adequadas à regressão, cobrindo os requisitos CAT-RF-01 a CAT-RF-04.
+
+Os cinco testes estão implementados em [catalogo.cy.js](../cypress/e2e/catalogo.cy.js), com login antes de cada teste e comparação das informações dos produtos antes e depois das alterações de ordenação. A automação não exige quantidade fixa de seis produtos nem critério de desempate para preços iguais. A verificação de imagem carregada e visível não substitui uma avaliação visual completa.
+
+Em 16/11/2026, os cinco testes do catálogo foram aprovados no Chrome 157, em modo interativo e headless, no macOS 15.8.3. A execução conjunta com os seis testes de login totalizou 11 testes aprovados, sem falhas, em modo headless local. A execução conjunta também foi aprovada no GitHub Actions, em Linux com Chrome headless, com 11 testes aprovados e nenhuma falha no [PR #2](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/2). Consultar a [evidência da execução no CI](../evidence/cypress/09-login-catalogo-github-actions-sucesso.png).
+
+Evidências: [execução headless de login e catálogo](../evidence/cypress/07-login-catalogo-execucao-headless.png) e [execução interativa do catálogo](../evidence/cypress/08-catalogo-execucao-interativa.png).
 
 ## 4. Ambiente e dados
 

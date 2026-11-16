@@ -40,12 +40,12 @@ Os critérios de validação são fundamentados em comportamentos observáveis e
 
 ## 3. Cobertura e resultados
 
-**Portfólio em construção: primeiros ciclos manuais de login e catálogo concluídos. Automação de login implementada e validada localmente e no CI.**
+**Portfólio em construção: primeiros ciclos manuais de login e catálogo concluídos. São 11 testes automatizados aprovados localmente e no GitHub Actions.**
 
 | Funcionalidade | Testes manuais executados | Testes automatizados | Defeitos identificados | Situação |
 |---|---:|---:|---:|---|
-| Login | 6 | 6 | 1 | Ciclo manual concluído e automação validada |
-| Catálogo | 5 | 0 | 0 | Ciclo manual de exibição e ordenação concluído |
+| Login | 6 | 6 | 1 | Ciclo manual concluído; automação validada localmente e no CI |
+| Catálogo | 5 | 5 | 0 | Ciclo manual concluído; automação validada localmente e no CI |
 | Carrinho | — | — | — | Planejado |
 | Checkout | — | — | — | Planejado |
 
@@ -75,6 +75,7 @@ Ciclo de execução: QASD-R1.
 
 ### Resultados dos testes automatizados
 
+#### Login | QASD-10
 Tarefa: QASD-10.
 
 | Indicador | Resultado |
@@ -103,6 +104,32 @@ A suíte contempla os seguintes cenários:
 Os testes utilizam seletores `data-test`, assertions para verificar os resultados esperados e configuração de isolamento entre cenários.
 
 [Consultar código dos testes automatizados](cypress/e2e/login.cy.js).
+
+#### Catálogo | QASD-14
+
+Os cinco casos aprovados no ciclo manual QASD-R2 foram automatizados com Cypress:
+
+- QASD-T7: exibição das informações dos produtos.
+- QASD-T8: ordenação por nome crescente.
+- QASD-T9: ordenação por nome decrescente.
+- QASD-T10: ordenação por preço crescente.
+- QASD-T11: ordenação por preço decrescente.
+
+Os quatro testes de ordenação também verificam a opção selecionada e a preservação dos produtos e de suas informações.
+
+| Validação local | Executados | Aprovados | Reprovados |
+|---|---:|---:|---:|
+| Catálogo em modo interativo | 5 | 5 | 0 |
+| Catálogo em modo headless | 5 | 5 | 0 |
+| Login e catálogo em modo headless | 11 | 11 | 0 |
+
+As execuções locais foram realizadas em 16/11/2026, no macOS 15.8.3 com Chrome 157 e Cypress 16.2.1. A execução conjunta de login e catálogo também foi aprovada no GitHub Actions, em Linux com Chrome headless, com 11 testes aprovados e nenhuma falha no [PR #2](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/2).
+
+Cada teste do catálogo realiza login antes de iniciar suas verificações. A função `getProducts()` captura nome, descrição, preço e endereço da imagem para comparar as informações antes e depois da ordenação.
+
+A automação não exige quantidade fixa de seis produtos nem desempate entre preços iguais. A verificação de imagem carregada e visível não representa uma avaliação visual completa.
+
+[Consultar código dos testes automatizados do catálogo](cypress/e2e/catalogo.cy.js).
 
 ### Destaque: investigação de defeito
 
@@ -148,17 +175,29 @@ npm ci
 npm run test:e2e:open
 ```
 
-Selecione **E2E Testing**, escolha o Google Chrome e abra o arquivo `login.cy.js`.
+Selecione **E2E Testing**, escolha o Google Chrome e abra `login.cy.js` ou `catalogo.cy.js`, conforme o fluxo que deseja executar.
 
 ### Execução headless
 
+Execute todos os testes no Chrome:
+
 ```bash
-npm run test:e2e
+npm run test:e2e -- --browser chrome
 ```
 
-O comando executa a suíte automatizada no Chrome sem utilizar a interface interativa do Cypress.
+A execução conjunta foi validada localmente no Chrome 157, com 11 testes aprovados: seis de login e cinco de catálogo.
 
-Execução headless validada no Chrome 157 com os seis testes aprovados. Os seis cenários também foram executados individualmente, todos com aprovação.
+Para executar apenas os testes do catálogo:
+
+```bash
+npm run test:e2e -- --spec cypress/e2e/catalogo.cy.js --browser chrome
+```
+
+Para executar apenas os testes de login:
+
+```bash
+npm run test:e2e -- --spec cypress/e2e/login.cy.js --browser chrome
+```
 
 ## 5. Documentação e rastreabilidade
 
@@ -171,6 +210,7 @@ Execução headless validada no Chrome 157 com os seis testes aprovados. Os seis
 | [QASD-8](docs/defects/QASD-8.md) | Relatório de defeito, investigação técnica e evidências |
 | [Suíte automatizada de login](cypress/e2e/login.cy.js) | Implementação dos testes funcionais E2E |
 | [Requisitos de catálogo](docs/requisitos-catalogo.md) | Requisitos propostos, critérios de aceitação, limites e matriz de rastreabilidade |
+| [Suíte automatizada de catálogo](cypress/e2e/catalogo.cy.js) | Cinco testes E2E de exibição, ordenação e preservação das informações dos produtos |
 
 **Projeto no Jira:** [QASD | Portfolio QA - SauceDemo](https://leesaeny.atlassian.net/browse/QASD-1).
 
@@ -212,5 +252,8 @@ Registros obtidos diretamente do Jira e do Zephyr Scale durante o desenvolviment
 | [Falha controlada no CI](evidence/cypress/04-login-github-actions-falha-controlada.png) | Pull request disparou a execução com uma falha intencional e upload da screenshot como artefato |
 | [Aprovação após restauração](evidence/cypress/05-login-github-actions-pr-restaurado.png) | Após remover a alteração temporária, os seis testes passaram novamente no pull request |
 | [Execução manual no GitHub Actions](evidence/cypress/06-login-github-actions-manual.png) | Acionamento manual na main pelo evento workflow_dispatch, com seis testes aprovados e nenhuma falha |
+| [Execução headless de login e catálogo](evidence/cypress/07-login-catalogo-execucao-headless.png) | Execução conjunta no Chrome 157, com 11 testes aprovados e nenhuma falha |
+| [Execução interativa do catálogo](evidence/cypress/08-catalogo-execucao-interativa.png) | Cinco testes do catálogo aprovados no Google Chrome |
+| [Login e catálogo no GitHub Actions](evidence/cypress/09-login-catalogo-github-actions-sucesso.png) | Execução conjunta no PR #2, em Linux com Chrome headless, com 11 testes aprovados e nenhuma falha |
 
 As evidências registram etapas do desenvolvimento e da execução dos testes e complementam os documentos técnicos disponíveis no repositório.

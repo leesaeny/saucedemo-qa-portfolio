@@ -1,4 +1,4 @@
-name: Testes de login
+name: Testes E2E - Login e catálogo
 
 on:
   push:

@@ -69,11 +69,17 @@ A alteração da ordenação deve modificar apenas a posição dos produtos na l
 
 ## 5. Rastreabilidade
 
-| Requisito | Casos de teste no Zephyr Scale | História |
-|---|---|---|
-| CAT-RF-01 | QASD-T7 | QASD-12 |
-| CAT-RF-02 | QASD-T8, QASD-T9 | QASD-12 |
-| CAT-RF-03 | QASD-T10, QASD-T11 | QASD-12 |
-| CAT-RF-04 | QASD-T8, QASD-T9, QASD-T10, QASD-T11 | QASD-12 |
+| Requisito | Casos de teste no Zephyr Scale | Testes automatizados em Cypress | História |
+|---|---|---|---|
+| CAT-RF-01 | QASD-T7 | QASD-T7 | QASD-12 |
+| CAT-RF-02 | QASD-T8, QASD-T9 | QASD-T8, QASD-T9 | QASD-12 |
+| CAT-RF-03 | QASD-T10, QASD-T11 | QASD-T10, QASD-T11 | QASD-12 |
+| CAT-RF-04 | QASD-T8, QASD-T9, QASD-T10, QASD-T11 | QASD-T8, QASD-T9, QASD-T10, QASD-T11 | QASD-12 |
 
-Elaboração dos casos acompanhada na tarefa QASD-13. Os vínculos indicam cobertura planejada e não representam aprovação dos requisitos.
+A elaboração e a execução manual dos casos foram acompanhadas na tarefa QASD-13. Os cinco casos foram aprovados no ciclo manual QASD-R2, conforme o [registro de resultados](../evidence/zephyr/catalogo/QASD-R2_resultados.md).
+
+A automação é acompanhada na tarefa [QASD-14](https://leesaeny.atlassian.net/browse/QASD-14), com os testes identificados pelas mesmas chaves dos casos manuais no arquivo [catalogo.cy.js](../cypress/e2e/catalogo.cy.js).
+
+Os cinco testes do catálogo foram aprovados localmente no Chrome, em modo [interativo](../evidence/cypress/08-catalogo-execucao-interativa.png) e na [execução headless conjunta com os seis testes de login](../evidence/cypress/07-login-catalogo-execucao-headless.png), totalizando 11 testes aprovados. A execução conjunta também foi aprovada no GitHub Actions, em Linux com Chrome headless, com 11 testes aprovados e nenhuma falha no [PR #2](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/2). Consultar a [evidência da execução no CI](../evidence/cypress/09-login-catalogo-github-actions-sucesso.png).
+
+A matriz indica a cobertura dos requisitos pelos casos. Os resultados se aplicam aos critérios e ao ambiente das execuções registradas e não representam ausência de defeitos em todo o catálogo.
