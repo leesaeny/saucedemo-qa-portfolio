@@ -5,7 +5,17 @@
 **Jira:** [QASD-3](https://leesaeny.atlassian.net/browse/QASD-3)  
 **Aplicação:** https://www.saucedemo.com/  
 **Tipo:** Testes funcionais de aplicação web  
-**Situação:** Primeiro ciclo de login concluído, com quatro requisitos e seis casos manuais, além de automação validada localmente e no GitHub Actions. Primeiro ciclo manual de catálogo concluído, com quatro requisitos propostos e cinco casos aprovados. Os cinco casos do catálogo estão automatizados e aprovados localmente no Chrome, em modo interativo e headless. A execução conjunta de login e catálogo totalizou 11 testes aprovados em modo headless local; a execução conjunta também foi aprovada no GitHub Actions, em Linux com Chrome headless, com 11 testes aprovados e nenhuma falha. Carrinho e checkout aguardam seus respectivos ciclos.
+
+**Situação:**
+
+| Funcionalidade | Execução manual | Automação |
+|---|---|---|
+| Login | QASD-R1: 6/6 aprovados | 6 testes aprovados localmente e no GitHub Actions |
+| Catálogo | QASD-R2: 5/5 aprovados | 5 testes aprovados localmente e no GitHub Actions |
+| Carrinho | QASD-R3: 6/6 aprovados | Pendente |
+| Checkout | Planejada | Planejada |
+
+O defeito visual QASD-8 permanece aberto. Os resultados se limitam ao escopo e às condições de cada execução.
 
 ## 1. Objetivo
 
@@ -48,6 +58,14 @@ Os cinco testes estão implementados em [catalogo.cy.js](../cypress/e2e/catalogo
 Em 16/11/2026, os cinco testes do catálogo foram aprovados no Chrome 157, em modo interativo e headless, no macOS 15.8.3. A execução conjunta com os seis testes de login totalizou 11 testes aprovados, sem falhas, em modo headless local. A execução conjunta também foi aprovada no GitHub Actions, em Linux com Chrome headless, com 11 testes aprovados e nenhuma falha no [PR #2](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/2). Consultar a [evidência da execução no CI](../evidence/cypress/09-login-catalogo-github-actions-sucesso.png).
 
 Evidências: [execução headless de login e catálogo](../evidence/cypress/07-login-catalogo-execucao-headless.png) e [execução interativa do catálogo](../evidence/cypress/08-catalogo-execucao-interativa.png).
+
+O ciclo manual de carrinho QASD-R3 foi executado em 17/11/2026, no macOS 15.8.3 com Google Chrome 157 e perfil standard_user. Os seis casos QASD-T12 a QASD-T17 foram aprovados. As verificações contemplaram inclusão de produtos distintos, integridade das informações, quantidade, atualização do contador, remoção e retorno ao catálogo, conforme os requisitos CART-RF-01 a CART-RF-05.
+
+Os requisitos e critérios são propostas deste portfólio, elaboradas a partir da análise e exploração da aplicação, sem especificação oficial disponibilizada ou aprovação formal pelo responsável pelo produto.
+
+A automação dos casos do carrinho está pendente. Checkout, imagens dos produtos e persistência após logout ou recarregamento ficaram fora deste ciclo. As observações sobre persistência após logout e Reset App State permanecem pendentes de investigação na QASD-15 e não foram classificadas como defeitos.
+
+Consultar os [requisitos de carrinho](requisitos-carrinho.md) e os [resultados do ciclo QASD-R3](../evidence/zephyr/carrinho/QASD-R3_resultados.md).
 
 ## 4. Ambiente e dados
 
