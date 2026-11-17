@@ -12,7 +12,7 @@
 |---|---|---|
 | Login | QASD-R1: 6/6 aprovados | 6 testes aprovados localmente e no GitHub Actions |
 | Catálogo | QASD-R2: 5/5 aprovados | 5 testes aprovados localmente e no GitHub Actions |
-| Carrinho | QASD-R3: 6/6 aprovados | Pendente |
+| Carrinho | QASD-R3: 6/6 aprovados | 6 testes aprovados localmente e no GitHub Actions |
 | Checkout | Planejada | Planejada |
 
 O defeito visual QASD-8 permanece aberto. Os resultados se limitam ao escopo e às condições de cada execução.
@@ -63,7 +63,11 @@ O ciclo manual de carrinho QASD-R3 foi executado em 17/11/2026, no macOS 15.8.3 
 
 Os requisitos e critérios são propostas deste portfólio, elaboradas a partir da análise e exploração da aplicação, sem especificação oficial disponibilizada ou aprovação formal pelo responsável pelo produto.
 
-A automação dos casos do carrinho está pendente. Checkout, imagens dos produtos e persistência após logout ou recarregamento ficaram fora deste ciclo. As observações sobre persistência após logout e Reset App State permanecem pendentes de investigação na QASD-15 e não foram classificadas como defeitos.
+A automação do carrinho é acompanhada na tarefa [QASD-16](https://leesaeny.atlassian.net/browse/QASD-16). Os seis casos QASD-T12 a QASD-T17 estão implementados em [carrinho.cy.js](../cypress/e2e/carrinho.cy.js) e foram aprovados em modo interativo no Chrome. A execução headless conjunta de login, catálogo e carrinho também foi aprovada localmente e no GitHub Actions pelo [PR #8](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/8), com 17 testes aprovados e nenhuma falha em cada execução.
+
+A seleção fixa de Backpack e Bike Light mantém correspondência com o ciclo manual e facilita reproduzir falhas. A automação captura as informações no catálogo para comparação com o carrinho. A organização, as evidências e as limitações estão detalhadas na [documentação de automação e CI](automacao-e-ci.md).
+
+Checkout, imagens dos produtos e persistência após logout ou recarregamento ficaram fora deste ciclo. As observações sobre persistência após logout e Reset App State permanecem pendentes de investigação na QASD-15 e não foram classificadas como defeitos.
 
 Consultar os [requisitos de carrinho](requisitos-carrinho.md) e os [resultados do ciclo QASD-R3](../evidence/zephyr/carrinho/QASD-R3_resultados.md).
 

@@ -120,14 +120,18 @@ Produtos removidos devem apresentar Add to cart.
 
 | Requisito | Casos de teste no Zephyr Scale | Testes automatizados em Cypress | História |
 |---|---|---|---|
-| CART-RF-01 | QASD-T12, QASD-T13, QASD-T16 | Pendente | QASD-15 |
-| CART-RF-02 | QASD-T12, QASD-T13 | Pendente | QASD-15 |
-| CART-RF-03 | QASD-T12, QASD-T13, QASD-T14, QASD-T15, QASD-T16, QASD-T17 | Pendente | QASD-15 |
-| CART-RF-04 | QASD-T14, QASD-T15, QASD-T17 | Pendente | QASD-15 |
-| CART-RF-05 | QASD-T16, QASD-T17 | Pendente | QASD-15 |
+| CART-RF-01 | QASD-T12, QASD-T13, QASD-T16 | QASD-T12, QASD-T13, QASD-T16 | QASD-15 |
+| CART-RF-02 | QASD-T12, QASD-T13 | QASD-T12, QASD-T13 | QASD-15 |
+| CART-RF-03 | QASD-T12, QASD-T13, QASD-T14, QASD-T15, QASD-T16, QASD-T17 | QASD-T12, QASD-T13, QASD-T14, QASD-T15, QASD-T16, QASD-T17 | QASD-15 |
+| CART-RF-04 | QASD-T14, QASD-T15, QASD-T17 | QASD-T14, QASD-T15, QASD-T17 | QASD-15 |
+| CART-RF-05 | QASD-T16, QASD-T17 | QASD-T16, QASD-T17 | QASD-15 |
 
 Os seis casos foram aprovados no ciclo manual QASD-R3, conforme o [registro de resultados](../evidence/zephyr/carrinho/QASD-R3_resultados.md).
 
-A automação dos casos está pendente.
+A automação é acompanhada na tarefa [QASD-16](https://leesaeny.atlassian.net/browse/QASD-16), com os seis testes identificados pelas mesmas chaves dos casos manuais no arquivo [carrinho.cy.js](../cypress/e2e/carrinho.cy.js).
+
+Os seis testes do carrinho foram aprovados localmente no Chrome, em modo [interativo](../evidence/cypress/10-carrinho-execucao-interativa.png) e na [execução headless conjunta](../evidence/cypress/11-login-catalogo-carrinho-execucao-headless.png). A execução conjunta de login, catálogo e carrinho também foi aprovada no GitHub Actions, em Linux com Chrome headless, com 17 testes aprovados e nenhuma falha no [PR #8](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/8).
+
+Consultar a [evidência da execução no CI](../evidence/cypress/12-login-catalogo-carrinho-github-actions-sucesso.png) e a [documentação de automação e CI](automacao-e-ci.md), que detalha a seleção dos produtos, a comparação entre telas e as limitações.
 
 A matriz indica a cobertura dos requisitos pelos casos deste ciclo. Os resultados se aplicam aos critérios e ao ambiente das execuções registradas e não representam cobertura completa ou ausência de defeitos em todo o carrinho.
