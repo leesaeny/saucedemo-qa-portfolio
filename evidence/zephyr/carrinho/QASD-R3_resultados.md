@@ -43,7 +43,7 @@ Os resultados se aplicam aos casos, ao ambiente e aos critérios propostos para 
 
 ## Registros relacionados
 
-- [História, requisitos e critérios de aceitação](https://leesaeny.atlassian.net/browse/QASD-15).
+- [Requisitos e matriz de rastreabilidade](../../../docs/requisitos-carrinho.md).
 - [Captura dos resultados no Zephyr Scale](QASD-R3_resultados-execucao.png).
 - [Exportação original do Zephyr Scale em Excel](QASD-R3_resultados.xlsx).
 
