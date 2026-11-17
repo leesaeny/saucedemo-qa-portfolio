@@ -1,6 +1,6 @@
 # Automação de testes e integração contínua | SauceDemo
 
-Este documento reúne o escopo, a organização, os resultados e as limitações das automações de login e catálogo, além da validação da integração contínua.
+Este documento reúne o escopo, a organização, os resultados e as limitações das automações de login, catálogo e carrinho, além da validação da integração contínua.
 
 Os identificadores dos testes preservam as chaves dos casos manuais no Zephyr Scale.
 
@@ -8,7 +8,7 @@ Os identificadores dos testes preservam as chaves dos casos manuais no Zephyr Sc
 
 Não foi disponibilizada uma especificação oficial de requisitos para este projeto.
 
-Os requisitos de login foram inferidos de comportamentos observados. Os requisitos e critérios de catálogo foram documentados a partir da exploração da aplicação, com critérios de aceitação propostos para este portfólio. Não houve aprovação formal pelo responsável pelo produto.
+Os requisitos de login foram inferidos de comportamentos observados. Os requisitos e critérios de catálogo e carrinho foram documentados a partir da análise e exploração da aplicação, com critérios de aceitação propostos para este portfólio. Não houve aprovação formal pelo responsável pelo produto.
 
 A aprovação dos testes demonstra atendimento aos critérios documentados nas condições das execuções. Não confirma que esses critérios representem integralmente as regras de negócio pretendidas pelos responsáveis pela aplicação.
 
@@ -153,7 +153,84 @@ Os testes de ordenação partem de uma ordenação oposta àquela que será veri
 - [Execução headless conjunta](../evidence/cypress/07-login-catalogo-execucao-headless.png).
 - [Execução conjunta no GitHub Actions](../evidence/cypress/09-login-catalogo-github-actions-sucesso.png).
 
-## 4. Execução conjunta | Login e catálogo
+## 4. Carrinho | QASD-16
+
+### Escopo automatizado
+
+| Caso do Zephyr Scale | Verificação |
+|---|---|
+| QASD-T12 | Inclusão de um produto, informações, quantidade e contador |
+| QASD-T13 | Inclusão de dois produtos distintos e preservação das informações |
+| QASD-T14 | Remoção de um produto mantendo o outro e suas informações |
+| QASD-T15 | Remoção do último produto e retirada do contador |
+| QASD-T16 | Retorno ao catálogo preservando a seleção |
+| QASD-T17 | Atualização dos botões do catálogo após remover todos os produtos |
+
+### Cobertura dos casos manuais do ciclo
+
+| Indicador | Resultado |
+|---|---:|
+| Ciclo manual de referência | QASD-R3 |
+| Casos manuais do ciclo | 6 |
+| Casos selecionados para automação | 6 |
+| Casos implementados em Cypress | 6 |
+| Cobertura dos casos manuais pela automação | 6/6 (100%) |
+
+A correspondência considera os critérios funcionais documentados. Não representa cobertura completa dos comportamentos do carrinho.
+
+### Execuções por ambiente e modo
+
+| Ambiente | Modo ou acionamento | Executados | Aprovados | Reprovados | Taxa de aprovação |
+|---|---|---:|---:|---:|---:|
+| Local, macOS 15.8.3 e Chrome 157 | Interativo | 6 | 6 | 0 | 100% |
+| Local, macOS 15.8.3 e Chrome 157 | Headless, execução conjunta | 6 | 6 | 0 | 100% |
+| GitHub Actions, Linux e Chrome headless | PR #8, execução conjunta | 6 | 6 | 0 | 100% |
+
+As execuções registradas foram realizadas em 17/11/2026.
+
+As linhas headless apresentam apenas os seis testes do carrinho, que fizeram parte das execuções conjuntas de 17 testes: seis de login, cinco de catálogo e seis de carrinho. Esses totais não devem ser somados como novos casos.
+
+A execução no CI pode ser consultada nos [logs do PR #8](https://github.com/leesaeny/saucedemo-qa-portfolio/actions/runs/44176528738/job/134369240875).
+
+### Organização dos testes e limitações
+
+Os seletores e dados de seleção estão centralizados. Cada teste realiza login com standard_user e prepara seu próprio carrinho, sem depender do resultado de outro caso.
+
+O projeto utiliza testIsolation: true. A preparação verifica o acesso ao catálogo e a ausência do contador antes das ações de cada teste. Não utiliza Reset App State para preparar os cenários.
+
+A função getProductData() captura nome, descrição e preço do produto no catálogo antes da inclusão. A função checkCartProduct() compara essas informações com o item correspondente no carrinho e verifica quantidade 1 e disponibilidade do botão Remove.
+
+Nos casos de integridade das informações, a execução manual utiliza os dados explícitos cadastrados no Zephyr. A automação utiliza os valores capturados no catálogo como referência de comparação com o carrinho.
+
+**Seleção dos produtos:**
+
+Neste ciclo, a automação utiliza Sauce Labs Backpack e Sauce Labs Bike Light para manter correspondência com os dados dos casos manuais QASD-T12 a QASD-T17 e facilitar a reprodução de falhas.
+
+Essa seleção não representa uma restrição do requisito nem demonstra validação com todos os produtos ou combinações do catálogo. As funções recebem os produtos como parâmetros, permitindo ampliar a seleção em ciclos futuros.
+
+**Limitações:**
+
+- A comparação entre catálogo e carrinho verifica correspondência das informações, sem comprovar sua exatidão em relação a uma fonte externa.
+- Uma informação incorreta nos dois locais pode permanecer consistente e não ser identificada por essa comparação.
+- A quantidade avaliada é 1 por produto distinto, conforme o escopo deste ciclo.
+- A seleção fixa não cobre todos os produtos, pares ou ordens possíveis de inclusão e remoção.
+- Checkout, imagens dos produtos, persistência após logout ou recarregamento e comportamento de Reset App State ficam fora deste ciclo.
+- As execuções registradas não demonstram compatibilidade com outros perfis, navegadores ou dispositivos.
+
+### Código e evidências
+
+- [Código dos testes de carrinho](../cypress/e2e/carrinho.cy.js).
+- [Requisitos e matriz de rastreabilidade](requisitos-carrinho.md).
+- [Resultados manuais do QASD-R3](../evidence/zephyr/carrinho/QASD-R3_resultados.md).
+- [Execução interativa](../evidence/cypress/10-carrinho-execucao-interativa.png).
+- [Execução headless conjunta](../evidence/cypress/11-login-catalogo-carrinho-execucao-headless.png).
+- [Execução conjunta no GitHub Actions](../evidence/cypress/12-login-catalogo-carrinho-github-actions-sucesso.png).
+- [Tarefa de automação QASD-16](https://leesaeny.atlassian.net/browse/QASD-16).
+- [PR #8](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/8).
+
+## 5. Execuções conjuntas
+
+### Login e catálogo | 16/11/2026
 
 A execução conjunta contempla 11 testes distintos: seis de login e cinco de catálogo.
 
@@ -168,12 +245,30 @@ A execução no GitHub Actions foi validada no [PR #2](https://github.com/leesae
 
 A aprovação conjunta demonstra a execução das duas suítes nas condições registradas. Não acrescenta novos cenários à cobertura nem representa um fluxo completo de compra.
 
-### Evidências
+**Evidências:**
 
 - [Execução conjunta local](../evidence/cypress/07-login-catalogo-execucao-headless.png).
 - [Execução conjunta no GitHub Actions](../evidence/cypress/09-login-catalogo-github-actions-sucesso.png).
 
-## 5. Integração contínua | QASD-11
+### Login, catálogo e carrinho | 17/11/2026
+
+A execução conjunta contempla 17 testes distintos: seis de login, cinco de catálogo e seis de carrinho.
+
+| Ambiente | Modo ou acionamento | Executados | Aprovados | Reprovados | Taxa de aprovação |
+|---|---|---:|---:|---:|---:|
+| Local, macOS 15.8.3 e Chrome 157 | Headless | 17 | 17 | 0 | 100% |
+| GitHub Actions, Linux e Chrome headless | PR #8 | 17 | 17 | 0 | 100% |
+
+As duas execuções foram realizadas em 17/11/2026. A execução no CI foi validada no [PR #8](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/8), conforme os [logs do GitHub Actions](https://github.com/leesaeny/saucedemo-qa-portfolio/actions/runs/44176528738/job/134369240875).
+
+São os mesmos 17 testes nos dois ambientes. A execução conjunta verifica as três suítes nas condições registradas, sem representar um fluxo completo de compra ou cobertura completa das funcionalidades.
+
+**Evidências:**
+
+- [Execução conjunta local](../evidence/cypress/11-login-catalogo-carrinho-execucao-headless.png).
+- [Execução conjunta no GitHub Actions](../evidence/cypress/12-login-catalogo-carrinho-github-actions-sucesso.png).
+
+## 6. Integração contínua | QASD-11
 
 O workflow executa os testes em Linux com Google Chrome headless.
 
@@ -183,7 +278,9 @@ Os acionamentos configurados são:
 - Pull request destinado à branch `main`.
 - Acionamento manual pelo evento `workflow_dispatch`.
 
-A validação inicial da integração contínua utilizou os seis testes de login. Posteriormente, a execução conjunta incluiu os cinco testes de catálogo.
+A validação inicial da integração contínua utilizou os seis testes de login. Posteriormente, foram incluídos os cinco testes de catálogo e os seis de carrinho, totalizando 17 testes aprovados na execução do PR #8.
+
+O workflow se chama Testes E2E - SauceDemo. O identificador do job permanece login porque esse é o check obrigatório configurado na proteção da main. Apesar do nome, o job executa as três suítes. O artefato de screenshots de falhas se chama e2e-failure-screenshots.
 
 ### Falha controlada no PR #1
 
@@ -206,7 +303,7 @@ A falha foi introduzida no teste para validar o processo de integração contín
 - [Aprovação após restauração](../evidence/cypress/05-login-github-actions-pr-restaurado.png).
 - [Acionamento manual no GitHub Actions](../evidence/cypress/06-login-github-actions-manual.png).
 
-## 6. Alcance dos resultados
+## 7. Alcance dos resultados
 
 Os resultados representam as condições das execuções registradas. A aplicação pública é mantida por terceiros e pode apresentar alterações posteriores.
 
@@ -216,12 +313,13 @@ A aprovação funcional não representa ausência de defeitos, validação visua
 
 Os resultados não constituem aprovação pelo responsável pelo produto nem autorização para lançamento.
 
-## 7. Documentos relacionados
+## 8. Documentos relacionados
 
 - [Apresentação do projeto](../README.md).
 - [Plano de testes](plano-de-testes.md).
 - [Requisitos de login](requisitos-login.md).
 - [Requisitos de catálogo](requisitos-catalogo.md).
+- [Requisitos de carrinho](requisitos-carrinho.md).
 - [Relatório do ciclo manual de login](relatorio-ciclo-login.md).
 - [Investigação do QASD-8](defects/QASD-8.md).
 - [Projeto no Jira](https://leesaeny.atlassian.net/browse/QASD-1).

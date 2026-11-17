@@ -6,7 +6,7 @@ Projeto de Quality Assurance aplicado ao [SauceDemo](https://www.saucedemo.com/)
 
 Desenvolvido por **Lee Saeny** como aplicação prática dos conhecimentos adquiridos no *Microsoft Junior QA Software Tester Professional Certificate*.
 
-**Projeto em construção:** ciclos manuais de login, catálogo e carrinho executados, com 17 casos aprovados. Login e catálogo possuem 11 testes automatizados aprovados localmente e no GitHub Actions. A automação dos seis casos do carrinho é a próxima etapa; checkout permanece planejado.
+**Projeto em construção:** primeiros ciclos de login, catálogo e carrinho validados, com 17 casos manuais aprovados e 17 testes automatizados aprovados localmente e no GitHub Actions. Checkout permanece planejado; novas ampliações de cobertura serão tratadas em ciclos posteriores.
 
 ## 1. Processo e entregas
 
@@ -46,7 +46,7 @@ O Jira e o Zephyr Scale organizam as atividades, os casos e as execuções. Os d
 |---|---|---:|---:|---:|---|
 | Login | Autenticação, campos obrigatórios e usuário bloqueado | 6 | 6 | 1 | Primeiro ciclo concluído; defeito visual aberto |
 | Catálogo | Exibição, ordenação e preservação das informações dos produtos | 5 | 5 | 0 | Primeiro ciclo concluído |
-| Carrinho | Inclusão, remoção, quantidade, contador, integridade dos itens e retorno ao catálogo | 6 | 0 | 0 | Primeiro ciclo manual concluído; automação pendente |
+| Carrinho | Inclusão, remoção, quantidade, contador, integridade dos itens e retorno ao catálogo | 6 | 6 | 0 | Primeiro ciclo manual e automação concluídos |
 | Checkout | Validação dos dados, resumo financeiro e conclusão do pedido | — | — | — | Planejado |
 
 ### Resultados manuais
@@ -77,7 +77,7 @@ Não foi disponibilizada uma especificação oficial de requisitos para este pro
 
 Os resultados demonstram atendimento à referência adotada neste portfólio, nos dados e ambientes registrados. Não confirmam integralmente as regras de negócio pretendidas pelos responsáveis pela aplicação.
 
-Os casos manuais contemplam os requisitos documentados para cada ciclo: quatro de login, quatro de catálogo e cinco de carrinho. Os seis casos de login e os cinco de catálogo possuem automação correspondente; a automação dos seis casos do carrinho está pendente. Essa cobertura se limita à base documentada e não representa cobertura completa das funcionalidades ou do código-fonte.
+Os casos manuais contemplam os requisitos documentados para cada ciclo: quatro de login, quatro de catálogo e cinco de carrinho. Os 17 casos desses ciclos possuem automação correspondente: seis de login, cinco de catálogo e seis de carrinho. Essa cobertura se limita à base documentada e não representa cobertura completa das funcionalidades ou do código-fonte.
 
 As verificações do catálogo avaliam consistência antes e depois da ordenação, sem confirmar a exatidão dos dados em uma fonte externa. As execuções registradas utilizam Chrome e não demonstram compatibilidade com outros navegadores ou dispositivos.
 
@@ -103,26 +103,31 @@ Os testes preservam as chaves dos casos manuais no Zephyr Scale, permitindo rela
 |---|---|---|---|
 | Login | QASD-10 | QASD-T1 a QASD-T6 | [login.cy.js](cypress/e2e/login.cy.js) |
 | Catálogo | QASD-14 | QASD-T7 a QASD-T11 | [catalogo.cy.js](cypress/e2e/catalogo.cy.js) |
+| Carrinho | QASD-16 | QASD-T12 a QASD-T17 | [carrinho.cy.js](cypress/e2e/carrinho.cy.js) |
 
 No login, os seletores e os dados estão centralizados, com uma função para preencher as credenciais e enviar o formulário.
 
 No catálogo, cada teste realiza login antes das verificações. A função `getProducts()` reúne nome, descrição, preço e endereço da imagem para comparar os produtos antes e depois da ordenação.
 
-As duas suítes foram aprovadas localmente em modo interativo e headless. O detalhamento por funcionalidade, ambiente e modo está na [documentação de automação e CI](docs/automacao-e-ci.md).
+No carrinho, cada teste prepara sua própria seleção. A função `getProductData()` captura nome, descrição e preço no catálogo, e `checkCartProduct()` compara essas informações com o carrinho e verifica quantidade 1 e disponibilidade do botão Remove. A seleção fixa de Backpack e Bike Light mantém correspondência com o ciclo manual e facilita reproduzir falhas.
 
-### Execução conjunta dos 11 testes
+As três suítes foram aprovadas localmente em modo interativo e headless. O detalhamento por funcionalidade, ambiente, modo e limitações está na [documentação de automação e CI](docs/automacao-e-ci.md).
+
+### Execução conjunta dos 17 testes
 
 | Ambiente | Modo | Executados | Aprovados | Reprovados |
 |---|---|---:|---:|---:|
-| Local, macOS 15.8.3 e Chrome 157 | Headless | 11 | 11 | 0 |
-| GitHub Actions, Linux e Chrome | Headless, PR #2 | 11 | 11 | 0 |
+| Local, macOS 15.8.3 e Chrome 157 | Headless | 17 | 17 | 0 |
+| GitHub Actions, Linux e Chrome | Headless, PR #8 | 17 | 17 | 0 |
 
-A execução local foi realizada em 16/11/2026, com Cypress 16.2.1. A execução no CI foi validada no [PR #2](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/2).
+As duas execuções foram realizadas em 17/11/2026. A execução no CI foi validada no [PR #8](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/8), conforme os [logs do GitHub Actions](https://github.com/leesaeny/saucedemo-qa-portfolio/actions/runs/44176528738/job/134369240875).
 
-São os mesmos 11 testes nas duas execuções. A execução conjunta não representa um fluxo completo de compra.
+São os mesmos 17 testes nas duas execuções: seis de login, cinco de catálogo e seis de carrinho. A execução conjunta não representa um fluxo completo de compra nem cobertura completa das funcionalidades.
 
-- [Evidência da execução conjunta local](evidence/cypress/07-login-catalogo-execucao-headless.png).
-- [Evidência da execução conjunta no GitHub Actions](evidence/cypress/09-login-catalogo-github-actions-sucesso.png).
+- [Evidência da execução conjunta local](evidence/cypress/11-login-catalogo-carrinho-execucao-headless.png).
+- [Evidência da execução conjunta no GitHub Actions](evidence/cypress/12-login-catalogo-carrinho-github-actions-sucesso.png).
+
+O histórico da execução anterior de 11 testes permanece disponível na [documentação de automação e CI](docs/automacao-e-ci.md).
 
 ### Validação do CI | QASD-11
 
@@ -170,7 +175,7 @@ npm ci
 npm run test:e2e:open
 ```
 
-Selecione **E2E Testing**, escolha o Google Chrome e abra `login.cy.js` ou `catalogo.cy.js`.
+Selecione **E2E Testing**, escolha o Google Chrome e abra `login.cy.js`, `catalogo.cy.js` ou `carrinho.cy.js`.
 
 ### Execução headless
 
@@ -192,6 +197,12 @@ Para executar apenas catálogo:
 npm run test:e2e -- --spec cypress/e2e/catalogo.cy.js --browser chrome
 ```
 
+Para executar apenas carrinho:
+
+```bash
+npm run test:e2e -- --spec cypress/e2e/carrinho.cy.js --browser chrome
+```
+
 ## 7. Documentação e rastreabilidade
 
 | Documento | Conteúdo |
@@ -208,10 +219,10 @@ npm run test:e2e -- --spec cypress/e2e/catalogo.cy.js --browser chrome
 | [Investigação do QASD-8](docs/defects/QASD-8.md) | Reprodução, análise técnica e evidências do defeito |
 | [Suíte de login](cypress/e2e/login.cy.js) | Implementação dos seis testes de autenticação |
 | [Suíte de catálogo](cypress/e2e/catalogo.cy.js) | Implementação dos cinco testes de exibição, ordenação e preservação dos dados |
+| [Suíte de carrinho](cypress/e2e/carrinho.cy.js) | Implementação dos seis testes de inclusão, remoção, contador e retorno ao catálogo |
 
 ## 8. Próximos passos
 
-- Automatizar os casos QASD-T12 a QASD-T17 do carrinho e validar a execução local e no GitHub Actions.
 - Investigar a persistência do carrinho após logout e o comportamento de Reset App State.
 - Ampliar progressivamente a cobertura e a regressão.
 - Planejar o ciclo de checkout.
@@ -265,5 +276,8 @@ As evidências registram diferentes etapas do desenvolvimento. Cada resultado de
 | [Login e catálogo em modo headless](evidence/cypress/07-login-catalogo-execucao-headless.png) | Execução conjunta local, com 11 testes aprovados |
 | [Catálogo em modo interativo](evidence/cypress/08-catalogo-execucao-interativa.png) | Cinco testes aprovados no Google Chrome |
 | [Login e catálogo no GitHub Actions](evidence/cypress/09-login-catalogo-github-actions-sucesso.png) | Execução conjunta no PR #2, com 11 testes aprovados |
+| [Carrinho em modo interativo](evidence/cypress/10-carrinho-execucao-interativa.png) | Seis testes aprovados no Google Chrome |
+| [Login, catálogo e carrinho em modo headless](evidence/cypress/11-login-catalogo-carrinho-execucao-headless.png) | Execução conjunta local, com 17 testes aprovados |
+| [Login, catálogo e carrinho no GitHub Actions](evidence/cypress/12-login-catalogo-carrinho-github-actions-sucesso.png) | Execução conjunta no PR #8, com 17 testes aprovados |
 
 </details>
