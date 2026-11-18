@@ -43,6 +43,7 @@ Os resultados se aplicam aos casos, ao ambiente e aos critérios propostos para 
 
 ## Registros relacionados
 
+- [Requisitos e matriz de rastreabilidade](../../../docs/requisitos-checkout.md).
 - [Captura dos resultados no Zephyr Scale](QASD-R4-resultados-execucao.png).
 - [Exportação original do Zephyr Scale em Excel](QASD-R4-resultados.xlsx).
 

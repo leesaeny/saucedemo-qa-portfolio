@@ -6,7 +6,7 @@ Projeto de Quality Assurance aplicado ao [SauceDemo](https://www.saucedemo.com/)
 
 Desenvolvido por **Lee Saeny** como aplicação prática dos conhecimentos adquiridos no *Microsoft Junior QA Software Tester Professional Certificate*.
 
-**Projeto em construção:** primeiros ciclos de login, catálogo e carrinho validados, com 17 casos manuais aprovados e 17 testes automatizados aprovados localmente e no GitHub Actions. Checkout permanece planejado; novas ampliações de cobertura serão tratadas em ciclos posteriores.
+**Projeto em construção:** primeiros ciclos manuais de login, catálogo, carrinho e checkout concluídos, com 24 casos aprovados. Os 17 testes automatizados de login, catálogo e carrinho foram aprovados localmente e no GitHub Actions. A automação do checkout está planejada.
 
 ## 1. Processo e entregas
 
@@ -14,10 +14,10 @@ O projeto acompanha as etapas do processo de testes de software (STLC), com entr
 
 | Etapa | Trabalho realizado | Documentação |
 |---|---|---|
-| Análise | Reconhecimento dos fluxos e documentação de requisitos inferidos e critérios propostos | [Análise funcional](docs/analise-funcional.md), [requisitos de login](docs/requisitos-login.md), [requisitos de catálogo](docs/requisitos-catalogo.md) e [requisitos de carrinho](docs/requisitos-carrinho.md) |
+| Análise | Reconhecimento dos fluxos e documentação de requisitos inferidos e critérios propostos | [Análise funcional](docs/analise-funcional.md), [requisitos de login](docs/requisitos-login.md), [requisitos de catálogo](docs/requisitos-catalogo.md), [requisitos de carrinho](docs/requisitos-carrinho.md) e [requisitos de checkout](docs/requisitos-checkout.md) |
 | Planejamento | Definição de escopo, riscos, prioridades e critérios de conclusão | [Plano de testes](docs/plano-de-testes.md) |
 | Elaboração dos testes | Casos no Zephyr Scale vinculados aos requisitos e às histórias | Matrizes de rastreabilidade nos documentos de requisitos |
-| Execução manual | Ciclos de login, catálogo e carrinho, com resultados e exportações do Zephyr | [Login](evidence/zephyr/login/06-ciclo-qasd-r1-resultados.md), [catálogo](evidence/zephyr/catalogo/QASD-R2_resultados.md) e [carrinho](evidence/zephyr/carrinho/QASD-R3_resultados.md) |
+| Execução manual | Ciclos de login, catálogo, carrinho e checkout, com resultados e exportações do Zephyr | [Login](evidence/zephyr/login/06-ciclo-qasd-r1-resultados.md), [Catálogo](evidence/zephyr/catalogo/QASD-R2_resultados.md), [Carrinho](evidence/zephyr/carrinho/QASD-R3_resultados.md) e [Checkout](evidence/zephyr/checkout/QASD-R4-resultados.md) |
 | Investigação de defeitos | Reprodução, análise com DevTools e avaliação experimental de uma possível solução | [Investigação do QASD-8](docs/defects/QASD-8.md) |
 | Automação e CI | Testes E2E com Cypress e execução no GitHub Actions | [Documentação de automação e CI](docs/automacao-e-ci.md) |
 | Avaliação dos resultados | Cobertura, aprovação, limitações e conclusão do ciclo | [Relatório de login](docs/relatorio-ciclo-login.md) e registros de execução |
@@ -47,19 +47,19 @@ O Jira e o Zephyr Scale organizam as atividades, os casos e as execuções. Os d
 | Login | Autenticação, campos obrigatórios e usuário bloqueado | 6 | 6 | 1 | Primeiro ciclo concluído; defeito visual aberto |
 | Catálogo | Exibição, ordenação e preservação das informações dos produtos | 5 | 5 | 0 | Primeiro ciclo concluído |
 | Carrinho | Inclusão, remoção, quantidade, contador, integridade dos itens e retorno ao catálogo | 6 | 6 | 0 | Primeiro ciclo manual e automação concluídos |
-| Checkout | Validação dos dados, resumo financeiro e conclusão do pedido | — | — | — | Planejado |
+| Checkout | Campos obrigatórios vazios, consistência do item e dos valores, cancelamento e conclusão do pedido | 7 | — | 0 | Primeiro ciclo manual concluído; automação planejada |
 
 ### Resultados manuais
 
-| Indicador | Login | Catálogo | Carrinho |
-|---|---|---|---|
-| Ciclo | QASD-R1 | QASD-R2 | QASD-R3 |
-| Data da execução | 12/11/2026 | 16/11/2026 | 17/11/2026 |
-| Requisitos avaliados | 4 | 4 | 5 |
-| Casos executados | 6 | 5 | 6 |
-| Aprovados | 6 | 5 | 6 |
-| Reprovados | 0 | 0 | 0 |
-| Aprovação funcional | 100% | 100% | 100% |
+| Indicador | Login | Catálogo | Carrinho | Checkout |
+|---|---|---|---|---|
+| Ciclo | QASD-R1 | QASD-R2 | QASD-R3 | QASD-R4 |
+| Data da execução | 12/11/2026 | 16/11/2026 | 17/11/2026 | 18/11/2026 |
+| Requisitos avaliados | 4 | 4 | 5 | 5 |
+| Casos executados | 6 | 5 | 6 | 7 |
+| Aprovados | 6 | 5 | 6 | 7 |
+| Reprovados | 0 | 0 | 0 | 0 |
+| Aprovação funcional | 100% | 100% | 100% | 100% |
 
 A taxa de aprovação considera os casos executados em cada ciclo. No login, o resultado funcional aprovado não representa resolução do defeito visual QASD-8.
 
@@ -67,9 +67,12 @@ No catálogo, foram verificadas a exibição das informações, as quatro opçõ
 
 No carrinho, os seis casos avaliaram inclusão de produtos distintos, informações e quantidade dos itens, contador, remoção e retorno ao catálogo. As observações sobre persistência após logout e Reset App State permanecem pendentes de investigação e não foram classificadas como defeitos.
 
+No checkout, os sete casos avaliaram o bloqueio com campos obrigatórios vazios, a consistência do item e dos valores exibidos no resumo, os dois caminhos de cancelamento e a conclusão do pedido com esvaziamento do carrinho. O checkout com carrinho vazio, a validação de campos preenchidos apenas com espaços e a geração do PDF ficaram fora do ciclo.
+
 - [Relatório de encerramento do ciclo de login](docs/relatorio-ciclo-login.md).
 - [Resultados do ciclo de catálogo](evidence/zephyr/catalogo/QASD-R2_resultados.md).
 - [Resultados do ciclo de carrinho](evidence/zephyr/carrinho/QASD-R3_resultados.md).
+- [Resultados do ciclo de checkout](evidence/zephyr/checkout/QASD-R4-resultados.md)
 
 ### Base de validação e limites
 
@@ -77,11 +80,11 @@ Não foi disponibilizada uma especificação oficial de requisitos para este pro
 
 Os resultados demonstram atendimento à referência adotada neste portfólio, nos dados e ambientes registrados. Não confirmam integralmente as regras de negócio pretendidas pelos responsáveis pela aplicação.
 
-Os casos manuais contemplam os requisitos documentados para cada ciclo: quatro de login, quatro de catálogo e cinco de carrinho. Os 17 casos desses ciclos possuem automação correspondente: seis de login, cinco de catálogo e seis de carrinho. Essa cobertura se limita à base documentada e não representa cobertura completa das funcionalidades ou do código-fonte.
+Os casos manuais contemplam os requisitos documentados para cada ciclo: quatro de login, quatro de catálogo, cinco de carrinho e cinco de checkout. Os 17 casos manuais de login, catálogo e carrinho possuem automação correspondente: seis de login, cinco de catálogo e seis de carrinho. Os sete casos de checkout foram executados manualmente, e sua automação está planejada. A cobertura se limita aos requisitos e critérios documentados para cada ciclo.
 
 As verificações do catálogo avaliam consistência antes e depois da ordenação, sem confirmar a exatidão dos dados em uma fonte externa. As execuções registradas utilizam Chrome e não demonstram compatibilidade com outros navegadores ou dispositivos.
 
-As limitações específicas estão nos [requisitos de login](docs/requisitos-login.md), nos [requisitos de catálogo](docs/requisitos-catalogo.md), nos [requisitos de carrinho](docs/requisitos-carrinho.md) e na [documentação de automação](docs/automacao-e-ci.md).
+As limitações específicas estão nos [requisitos de login](docs/requisitos-login.md), nos [requisitos de catálogo](docs/requisitos-catalogo.md), nos [requisitos de carrinho](docs/requisitos-carrinho.md), nos [requisitos de checkout](docs/requisitos-checkout.md) e na [documentação de automação](docs/automacao-e-ci.md).
 
 ## 4. Destaque: investigação do defeito QASD-8
 
@@ -223,10 +226,10 @@ npm run test:e2e -- --spec cypress/e2e/carrinho.cy.js --browser chrome
 
 ## 8. Próximos passos
 
+- Automatizar os sete casos do primeiro ciclo manual de checkout com Cypress e validar a suíte localmente e no GitHub Actions.
+- Ampliar a cobertura de checkout com cenários de carrinho vazio, campos preenchidos apenas com espaços e geração do PDF do pedido.
 - Investigar a persistência do carrinho após logout e o comportamento de Reset App State.
-- Ampliar progressivamente a cobertura e a regressão.
-- Planejar o ciclo de checkout.
-- Manter o QASD-8 aberto; se uma correção for disponibilizada, realizar reteste visual.
+- Realizar o reteste visual do QASD-8 quando uma correção estiver disponível.
 
 ## 9. Índice de evidências
 
@@ -262,6 +265,9 @@ As evidências registram diferentes etapas do desenvolvimento. Cada resultado de
 | [Resultados do QASD-R3](evidence/zephyr/carrinho/QASD-R3_resultados.md) | Resumo das seis execuções manuais de carrinho |
 | [Execução de carrinho no Zephyr](evidence/zephyr/carrinho/QASD-R3_resultados-execucao.png) | Registro dos resultados dos seis casos |
 | [Exportação de carrinho em Excel](evidence/zephyr/carrinho/QASD-R3_resultados.xlsx) | Relatório detalhado exportado do Zephyr Scale |
+| [Resultados do QASD-R4](evidence/zephyr/checkout/QASD-R4-resultados.md) | Resumo das sete execuções manuais de checkout |
+| [Execução de checkout no Zephyr](evidence/zephyr/checkout/QASD-R4-resultados-execucao.png) | Registro dos resultados dos sete casos |
+| [Exportação de checkout em Excel](evidence/zephyr/checkout/QASD-R4-resultados.xlsx) | Relatório detalhado exportado do Zephyr Scale |
 
 ### Cypress e GitHub Actions
 

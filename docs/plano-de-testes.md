@@ -13,7 +13,7 @@
 | Login | QASD-R1: 6/6 aprovados | 6 testes aprovados localmente e no GitHub Actions |
 | Catálogo | QASD-R2: 5/5 aprovados | 5 testes aprovados localmente e no GitHub Actions |
 | Carrinho | QASD-R3: 6/6 aprovados | 6 testes aprovados localmente e no GitHub Actions |
-| Checkout | Planejada | Planejada |
+| Checkout | QASD-R4: 7/7 aprovados | Planejada |
 
 O defeito visual QASD-8 permanece aberto. Os resultados se limitam ao escopo e às condições de cada execução.
 
@@ -70,6 +70,12 @@ A seleção fixa de Backpack e Bike Light mantém correspondência com o ciclo m
 Checkout, imagens dos produtos e persistência após logout ou recarregamento ficaram fora deste ciclo. As observações sobre persistência após logout e Reset App State permanecem pendentes de investigação na QASD-15 e não foram classificadas como defeitos.
 
 Consultar os [requisitos de carrinho](requisitos-carrinho.md) e os [resultados do ciclo QASD-R3](../evidence/zephyr/carrinho/QASD-R3_resultados.md).
+
+O primeiro ciclo manual de checkout, QASD-R4, foi executado em 18/11/2026 no macOS 15.8.3, com Google Chrome 157 e o perfil `standard_user`. Os sete casos do ciclo foram aprovados. A cobertura incluiu campos obrigatórios vazios, consistência do item e dos valores exibidos no resumo, cancelamento no formulário e no resumo, e confirmação do pedido com esvaziamento do carrinho.
+
+O cálculo do imposto, a geração do PDF, o checkout com carrinho vazio e a validação de campos preenchidos apenas com espaços ficaram fora deste ciclo.
+
+Consultar os [requisitos de checkout](requisitos-checkout.md) e os [resultados do ciclo QASD-R4](../evidence/zephyr/checkout/QASD-R4-resultados.md).
 
 ## 4. Ambiente e dados
 
