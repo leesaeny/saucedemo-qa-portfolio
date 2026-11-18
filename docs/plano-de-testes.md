@@ -13,7 +13,7 @@
 | Login | QASD-R1: 6/6 aprovados | 6 testes aprovados localmente e no GitHub Actions |
 | Catálogo | QASD-R2: 5/5 aprovados | 5 testes aprovados localmente e no GitHub Actions |
 | Carrinho | QASD-R3: 6/6 aprovados | 6 testes aprovados localmente e no GitHub Actions |
-| Checkout | QASD-R4: 7/7 aprovados | Planejada |
+| Checkout | QASD-R4: 7/7 aprovados | 7 testes aprovados localmente e no GitHub Actions |
 
 O defeito visual QASD-8 permanece aberto. Os resultados se limitam ao escopo e às condições de cada execução.
 
@@ -76,6 +76,10 @@ O primeiro ciclo manual de checkout, QASD-R4, foi executado em 18/11/2026 no mac
 O cálculo do imposto, a geração do PDF, o checkout com carrinho vazio e a validação de campos preenchidos apenas com espaços ficaram fora deste ciclo.
 
 Consultar os [requisitos de checkout](requisitos-checkout.md) e os [resultados do ciclo QASD-R4](../evidence/zephyr/checkout/QASD-R4-resultados.md).
+
+A automação do checkout é acompanhada na tarefa [QASD-18](https://leesaeny.atlassian.net/browse/QASD-18). Os sete casos do ciclo manual QASD-R4 têm testes correspondentes em [checkout.cy.js](../cypress/e2e/checkout.cy.js). Todos passaram no Chrome em modo interativo e headless local.
+
+A execução conjunta de login, catálogo, carrinho e checkout teve 24 de 24 testes aprovados em modo headless local e no GitHub Actions, no [PR #11](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/11). Os ambientes, as evidências e os limites da cobertura estão na [documentação de automação e CI](automacao-e-ci.md).
 
 ## 4. Ambiente e dados
 

@@ -86,12 +86,16 @@ Ao clicar em **Back Home**, o usuário deve retornar a **Products** (`/inventory
 
 ## 5. Rastreabilidade
 
-| Requisito | Casos de teste no Zephyr Scale | História |
-|---|---|---|
-| CHECKOUT-RF-01 | QASD-T18, QASD-T19, QASD-T20 | QASD-17 |
-| CHECKOUT-RF-02 | QASD-T21 | QASD-17 |
-| CHECKOUT-RF-03 | QASD-T22 | QASD-17 |
-| CHECKOUT-RF-04 | QASD-T23 | QASD-17 |
-| CHECKOUT-RF-05 | QASD-T24 | QASD-17 |
+| Requisito | Casos de teste no Zephyr Scale | Testes automatizados em Cypress | História |
+|---|---|---|---|
+| CHECKOUT-RF-01 | QASD-T18, QASD-T19, QASD-T20 | QASD-T18, QASD-T19, QASD-T20 | QASD-17 |
+| CHECKOUT-RF-02 | QASD-T21 | QASD-T21 | QASD-17 |
+| CHECKOUT-RF-03 | QASD-T22 | QASD-T22 | QASD-17 |
+| CHECKOUT-RF-04 | QASD-T23 | QASD-T23 | QASD-17 |
+| CHECKOUT-RF-05 | QASD-T24 | QASD-T24 | QASD-17 |
 
-Os sete casos foram aprovados no ciclo manual QASD-R4, conforme o [registro de resultados](../evidence/zephyr/checkout/QASD-R4-resultados.md). A cobertura se limita aos critérios, aos dados e ao ambiente registrados nesse ciclo.
+Os sete casos foram aprovados no ciclo manual QASD-R4, conforme o [registro de resultados](../evidence/zephyr/checkout/QASD-R4-resultados.md).
+
+A automação é acompanhada na tarefa [QASD-18](https://leesaeny.atlassian.net/browse/QASD-18). Os sete testes em [checkout.cy.js](../cypress/e2e/checkout.cy.js) preservam as chaves dos casos manuais. A [documentação de automação e CI](automacao-e-ci.md) reúne os resultados e as evidências das execuções no Chrome local e no GitHub Actions.
+
+A cobertura se limita aos critérios, aos dados e aos ambientes registrados para o primeiro ciclo de checkout.

@@ -6,7 +6,7 @@ Projeto de Quality Assurance aplicado ao [SauceDemo](https://www.saucedemo.com/)
 
 Desenvolvido por **Lee Saeny** como aplicação prática dos conhecimentos adquiridos no *Microsoft Junior QA Software Tester Professional Certificate*.
 
-**Projeto em construção:** primeiros ciclos manuais de login, catálogo, carrinho e checkout concluídos, com 24 casos aprovados. Os 17 testes automatizados de login, catálogo e carrinho foram aprovados localmente e no GitHub Actions. A automação do checkout está planejada.
+**Projeto em construção:** primeiros ciclos de login, catálogo, carrinho e checkout concluídos, com 24 casos manuais aprovados. Os 24 testes automatizados correspondentes foram aprovados localmente e no GitHub Actions.
 
 ## 1. Processo e entregas
 
@@ -47,7 +47,7 @@ O Jira e o Zephyr Scale organizam as atividades, os casos e as execuções. Os d
 | Login | Autenticação, campos obrigatórios e usuário bloqueado | 6 | 6 | 1 | Primeiro ciclo concluído; defeito visual aberto |
 | Catálogo | Exibição, ordenação e preservação das informações dos produtos | 5 | 5 | 0 | Primeiro ciclo concluído |
 | Carrinho | Inclusão, remoção, quantidade, contador, integridade dos itens e retorno ao catálogo | 6 | 6 | 0 | Primeiro ciclo manual e automação concluídos |
-| Checkout | Campos obrigatórios vazios, consistência do item e dos valores, cancelamento e conclusão do pedido | 7 | — | 0 | Primeiro ciclo manual concluído; automação planejada |
+| Checkout | Campos obrigatórios vazios, consistência do item e dos valores, cancelamento e conclusão do pedido | 7 | 7 | 0 | Primeiro ciclo manual e automação concluídos |
 
 ### Resultados manuais
 
@@ -80,7 +80,7 @@ Não foi disponibilizada uma especificação oficial de requisitos para este pro
 
 Os resultados demonstram atendimento à referência adotada neste portfólio, nos dados e ambientes registrados. Não confirmam integralmente as regras de negócio pretendidas pelos responsáveis pela aplicação.
 
-Os casos manuais contemplam os requisitos documentados para cada ciclo: quatro de login, quatro de catálogo, cinco de carrinho e cinco de checkout. Os 17 casos manuais de login, catálogo e carrinho possuem automação correspondente: seis de login, cinco de catálogo e seis de carrinho. Os sete casos de checkout foram executados manualmente, e sua automação está planejada. A cobertura se limita aos requisitos e critérios documentados para cada ciclo.
+Os casos manuais contemplam os requisitos documentados para cada ciclo: quatro de login, quatro de catálogo, cinco de carrinho e cinco de checkout. Os 24 casos manuais possuem automação correspondente: seis de login, cinco de catálogo, seis de carrinho e sete de checkout. A cobertura se limita aos requisitos e critérios documentados para cada ciclo.
 
 As verificações do catálogo avaliam consistência antes e depois da ordenação, sem confirmar a exatidão dos dados em uma fonte externa. As execuções registradas utilizam Chrome e não demonstram compatibilidade com outros navegadores ou dispositivos.
 
@@ -107,6 +107,7 @@ Os testes preservam as chaves dos casos manuais no Zephyr Scale, permitindo rela
 | Login | QASD-10 | QASD-T1 a QASD-T6 | [login.cy.js](cypress/e2e/login.cy.js) |
 | Catálogo | QASD-14 | QASD-T7 a QASD-T11 | [catalogo.cy.js](cypress/e2e/catalogo.cy.js) |
 | Carrinho | QASD-16 | QASD-T12 a QASD-T17 | [carrinho.cy.js](cypress/e2e/carrinho.cy.js) |
+| Checkout | QASD-18 | QASD-T18 a QASD-T24 | [checkout.cy.js](cypress/e2e/checkout.cy.js) |
 
 No login, os seletores e os dados estão centralizados, com uma função para preencher as credenciais e enviar o formulário.
 
@@ -114,7 +115,11 @@ No catálogo, cada teste realiza login antes das verificações. A função `get
 
 No carrinho, cada teste prepara sua própria seleção. A função `getProductData()` captura nome, descrição e preço no catálogo, e `checkCartProduct()` compara essas informações com o carrinho e verifica quantidade 1 e disponibilidade do botão Remove. A seleção fixa de Backpack e Bike Light mantém correspondência com o ciclo manual e facilita reproduzir falhas.
 
-As três suítes foram aprovadas localmente em modo interativo e headless. O detalhamento por funcionalidade, ambiente, modo e limitações está na [documentação de automação e CI](docs/automacao-e-ci.md).
+No checkout, cada teste prepara o carrinho com uma Sauce Labs Backpack. A suíte verifica os campos obrigatórios, a consistência entre carrinho e resumo, os dois caminhos de cancelamento e a conclusão do pedido.
+
+A execução conjunta das quatro suítes teve 24 testes aprovados em Chrome headless local e no GitHub Actions no [PR #11](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/11).
+
+O detalhamento por funcionalidade, ambiente e modo de execução está na [documentação de automação e CI](docs/automacao-e-ci.md).
 
 ### Execução conjunta dos 17 testes
 
@@ -226,7 +231,6 @@ npm run test:e2e -- --spec cypress/e2e/carrinho.cy.js --browser chrome
 
 ## 8. Próximos passos
 
-- Automatizar os sete casos do primeiro ciclo manual de checkout com Cypress e validar a suíte localmente e no GitHub Actions.
 - Ampliar a cobertura de checkout com cenários de carrinho vazio, campos preenchidos apenas com espaços e geração do PDF do pedido.
 - Investigar a persistência do carrinho após logout e o comportamento de Reset App State.
 - Realizar o reteste visual do QASD-8 quando uma correção estiver disponível.
@@ -285,5 +289,8 @@ As evidências registram diferentes etapas do desenvolvimento. Cada resultado de
 | [Carrinho em modo interativo](evidence/cypress/10-carrinho-execucao-interativa.png) | Seis testes aprovados no Google Chrome |
 | [Login, catálogo e carrinho em modo headless](evidence/cypress/11-login-catalogo-carrinho-execucao-headless.png) | Execução conjunta local, com 17 testes aprovados |
 | [Login, catálogo e carrinho no GitHub Actions](evidence/cypress/12-login-catalogo-carrinho-github-actions-sucesso.png) | Execução conjunta no PR #8, com 17 testes aprovados |
+| [Checkout em modo interativo](evidence/cypress/13-checkout-execucao-interativa.png) | Sete testes de checkout aprovados no Google Chrome |
+| [Quatro suítes em modo headless](evidence/cypress/14-login-catalogo-carrinho-checkout-execucao-headless.png) | Execução conjunta local, com 24 testes aprovados |
+| [Quatro suítes no GitHub Actions](evidence/cypress/15-login-catalogo-carrinho-checkout-github-actions-sucesso.png) | Execução conjunta no PR #11, com 24 testes aprovados |
 
 </details>
