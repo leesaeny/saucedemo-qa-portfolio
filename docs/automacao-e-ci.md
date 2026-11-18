@@ -1,6 +1,6 @@
 # Automação de testes e integração contínua | SauceDemo
 
-Este documento reúne o escopo, a organização, os resultados e as limitações das automações de login, catálogo e carrinho, além da validação da integração contínua.
+Este documento reúne o escopo, a organização, os resultados e as limitações das automações de login, catálogo, carrinho e checkout, além da validação da integração contínua.
 
 Os identificadores dos testes preservam as chaves dos casos manuais no Zephyr Scale.
 
@@ -8,7 +8,7 @@ Os identificadores dos testes preservam as chaves dos casos manuais no Zephyr Sc
 
 Não foi disponibilizada uma especificação oficial de requisitos para este projeto.
 
-Os requisitos de login foram inferidos de comportamentos observados. Os requisitos e critérios de catálogo e carrinho foram documentados a partir da análise e exploração da aplicação, com critérios de aceitação propostos para este portfólio. Não houve aprovação formal pelo responsável pelo produto.
+Os requisitos de login foram inferidos de comportamentos observados. Os requisitos e critérios de catálogo, carrinho e checkout foram documentados a partir da análise e exploração da aplicação, com critérios de aceitação propostos para este portfólio. Não houve aprovação formal pelo responsável pelo produto.
 
 A aprovação dos testes demonstra atendimento aos critérios documentados nas condições das execuções. Não confirma que esses critérios representem integralmente as regras de negócio pretendidas pelos responsáveis pela aplicação.
 
@@ -228,7 +228,53 @@ Essa seleção não representa uma restrição do requisito nem demonstra valida
 - [Tarefa de automação QASD-16](https://leesaeny.atlassian.net/browse/QASD-16).
 - [PR #8](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/8).
 
-## 5. Execuções conjuntas
+## 5. Checkout | QASD-18
+
+### Escopo automatizado
+
+- QASD-T18 a QASD-T20: bloqueio do avanço e mensagem correspondente quando um dos três campos obrigatórios está vazio.
+- QASD-T21: consistência do item entre o carrinho e o resumo, e conferência dos valores exibidos.
+- QASD-T22 e QASD-T23: cancelamento no formulário e no resumo, com retorno à tela esperada e preservação do item.
+- QASD-T24: confirmação do pedido, retorno ao catálogo e carrinho vazio.
+
+### Cobertura dos casos manuais do ciclo
+
+| Indicador | Resultado |
+|---|---:|
+| Ciclo manual de referência | QASD-R4 |
+| Casos manuais do ciclo | 7 |
+| Casos selecionados para automação | 7 |
+| Casos implementados em Cypress | 7 |
+| Cobertura dos casos manuais pela automação | 7/7 (100%) |
+
+### Execuções por ambiente e modo
+
+| Ambiente | Modo | Executados | Aprovados | Reprovados | Taxa de aprovação |
+|---|---|---:|---:|---:|---:|
+| Local, macOS 15.8.3 e Chrome 157 | Interativo, suíte de checkout | 7 | 7 | 0 | 100% |
+| Local, macOS 15.8.3 e Chrome 157 | Headless, suíte de checkout | 7 | 7 | 0 | 100% |
+
+As execuções ocorreram em 18/11/2026. O QASD-T18 também foi executado isoladamente durante a implementação e passou. A suíte completa foi validada localmente e no GitHub Actions, conforme a seção de execuções conjuntas.
+
+### Organização dos testes e limitações
+
+Cada teste autentica `standard_user` e adiciona uma Sauce Labs Backpack ao carrinho. Uma tabela de dados gera um teste independente para cada campo obrigatório vazio, com sua chave do Zephyr e sua mensagem esperada.
+
+No QASD-T21, o teste lê nome, descrição, quantidade e preço no carrinho e compara esses dados com o resumo. Ele confere se o subtotal corresponde ao preço do item e se o total corresponde à soma do subtotal com o imposto exibido, usando valores em centavos.
+
+- A comparação verifica a consistência dos dados exibidos entre as telas. A conferência financeira usa o imposto apresentado no resumo. A alíquota e a regra de arredondamento ficam fora da verificação.
+- A conclusão do pedido é verificada pela interface, incluindo a mensagem de confirmação e a lista vazia ao reabrir o carrinho.
+- Checkout com carrinho vazio, campos preenchidos apenas com espaços e geração do PDF ficam fora do ciclo.
+
+### Código e evidências
+
+- [Tarefa de automação QASD-18](https://leesaeny.atlassian.net/browse/QASD-18).
+- [Código dos testes de checkout](../cypress/e2e/checkout.cy.js).
+- [Requisitos e matriz de rastreabilidade](requisitos-checkout.md).
+- [Resultados manuais do QASD-R4](../evidence/zephyr/checkout/QASD-R4-resultados.md).
+- [Execução interativa](../evidence/cypress/13-checkout-execucao-interativa.png).
+
+## 6. Execuções conjuntas
 
 ### Login e catálogo | 16/11/2026
 
@@ -268,7 +314,21 @@ São os mesmos 17 testes nos dois ambientes. A execução conjunta verifica as t
 - [Execução conjunta local](../evidence/cypress/11-login-catalogo-carrinho-execucao-headless.png).
 - [Execução conjunta no GitHub Actions](../evidence/cypress/12-login-catalogo-carrinho-github-actions-sucesso.png).
 
-## 6. Integração contínua | QASD-11
+### Login, catálogo, carrinho e checkout | 18/11/2026
+
+A execução conjunta reuniu 6 testes de login, 5 de catálogo, 6 de carrinho e 7 de checkout.
+
+| Ambiente | Modo | Executados | Aprovados | Reprovados | Taxa de aprovação |
+|---|---|---:|---:|---:|---:|
+| Local, macOS 15.8.3 e Chrome 157 | Headless | 24 | 24 | 0 | 100% |
+| GitHub Actions, Linux e Chrome | Headless | 24 | 24 | 0 | 100% |
+
+A execução no GitHub Actions ocorreu no [PR #11](https://github.com/leesaeny/saucedemo-qa-portfolio/pull/11), no commit `24e8c81`, com aprovação do job [`login`](https://github.com/leesaeny/saucedemo-qa-portfolio/actions/runs/44336046982/job/134912944376).
+
+- [Execução headless local](../evidence/cypress/14-login-catalogo-carrinho-checkout-execucao-headless.png).
+- [Execução no GitHub Actions](../evidence/cypress/15-login-catalogo-carrinho-checkout-github-actions-sucesso.png).
+
+## 7. Integração contínua | QASD-11
 
 O workflow executa os testes em Linux com Google Chrome headless.
 
@@ -303,7 +363,7 @@ A falha foi introduzida no teste para validar o processo de integração contín
 - [Aprovação após restauração](../evidence/cypress/05-login-github-actions-pr-restaurado.png).
 - [Acionamento manual no GitHub Actions](../evidence/cypress/06-login-github-actions-manual.png).
 
-## 7. Alcance dos resultados
+## 8. Alcance dos resultados
 
 Os resultados representam as condições das execuções registradas. A aplicação pública é mantida por terceiros e pode apresentar alterações posteriores.
 
@@ -313,13 +373,14 @@ A aprovação funcional não representa ausência de defeitos, validação visua
 
 Os resultados não constituem aprovação pelo responsável pelo produto nem autorização para lançamento.
 
-## 8. Documentos relacionados
+## 9. Documentos relacionados
 
 - [Apresentação do projeto](../README.md).
 - [Plano de testes](plano-de-testes.md).
 - [Requisitos de login](requisitos-login.md).
 - [Requisitos de catálogo](requisitos-catalogo.md).
 - [Requisitos de carrinho](requisitos-carrinho.md).
+- [Requisitos de checkout](requisitos-checkout.md)
 - [Relatório do ciclo manual de login](relatorio-ciclo-login.md).
 - [Investigação do QASD-8](defects/QASD-8.md).
 - [Projeto no Jira](https://leesaeny.atlassian.net/browse/QASD-1).
